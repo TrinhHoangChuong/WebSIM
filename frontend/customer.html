@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Khach hang - SimMobifone</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Khach hang - SimMobifone</h1>
+  </header>
+  <main>
+    <section>
+      <div class="toolbar">
+        <input id="search" placeholder="Tim kiem sim...">
+        <button id="btn-refresh">Tai lai</button>
+        <button id="btn-logout" style="margin-left:auto">Dang xuat</button>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>So</th>
+              <th>Nha mang</th>
+              <th>Gia</th>
+              <th>Trang thai</th>
+              <th>...</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Don hang cua toi</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>So sim</th>
+              <th>Gia</th>
+              <th>Trang thai</th>
+              <th>Thoi gian</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-orders"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/api.js"></script>
+  <script src="./assets/js/layout.js"></script>
+  <script src="./assets/js/customer.js"></script>
+</body>
+</html>

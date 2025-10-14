@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Danh sach sim - Cong khai</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Danh sach sim (Cong khai)</h1>
+  </header>
+  <main>
+    <div class="toolbar">
+      <input id="search" placeholder="Tim kiem...">
+      <button id="btn-refresh">Tai lai</button>
+      <a href="./login.html" style="margin-left:auto">Dang nhap</a>
+    </div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>So</th>
+            <th>Nha mang</th>
+            <th>Gia</th>
+            <th>Trang thai</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </main>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/api.js"></script>
+  <script src="./assets/js/layout.js"></script>
+  <script>
+    (function(){
+      'use strict';
+      const tbody = document.getElementById('tbody');
+      const search = document.getElementById('search');
+      const btnRefresh = document.getElementById('btn-refresh');
+      let sims = [];
+      function render(){
+        const kw = (search.value||'').toLowerCase().trim();
+        const filtered = !kw ? sims : sims.filter(s => (s.so+"").toLowerCase().includes(kw) || (s.nha_mang+"").toLowerCase().includes(kw));
+        tbody.innerHTML='';
+        for (const s of filtered) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${Utils.escapeHtml(s.so)}</td>
+            <td>${Utils.escapeHtml(s.nha_mang)}</td>
+            <td>${Utils.currency(s.gia)}</td>
+            <td>${s.trang_thai === 'con_hang' ? '<span class="badge badge-green">Con hang</span>' : '<span class="badge badge-gray">Het hang</span>'}</td>`;
+          tbody.appendChild(tr);
+        }
+      }
+      async function load(){
+        sims = await API.listSims();
+        render();
+      }
+      document.addEventListener('DOMContentLoaded', ()=>{ load(); search.addEventListener('input', render); btnRefresh.addEventListener('click', load); });
+    })();
+  </script>
+</body>
+</html>

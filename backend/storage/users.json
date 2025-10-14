@@ -1,0 +1,4 @@
+[
+  { "id": "u_admin", "username": "admin", "password": "e3afed0047b08059d0fada10f400c1e5b1b3f8b5a1ddc0d4e48e6d8e7a2e5fe2", "role": "admin" },
+  { "id": "u_khach", "username": "khach", "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", "role": "customer" }
+]

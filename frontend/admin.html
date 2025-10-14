@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin - SimMobifone</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Admin - Quan ly SimMobifone</h1>
+  </header>
+  <main>
+    <section class="form-section">
+      <h2>Them sim</h2>
+      <form id="form-add">
+        <div class="grid">
+          <label>So sim <input id="so" required></label>
+          <label>Nha mang
+            <select id="nha_mang" required>
+              <option value="mobifone">Mobifone</option>
+              <option value="vinaphone">Vinaphone</option>
+              <option value="viettel">Viettel</option>
+              <option value="vietnamobile">Vietnamobile</option>
+            </select>
+          </label>
+          <label>Gia (VND) <input id="gia" type="number" min="1000" step="1000" required></label>
+          <label>Trang thai
+            <select id="trang_thai">
+              <option value="con_hang">Con hang</option>
+              <option value="het_hang">Het hang</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit">Them</button>
+        <span id="form-msg" class="msg"></span>
+      </form>
+    </section>
+
+    <section>
+      <h2>Danh sach sim</h2>
+      <div class="toolbar">
+        <input id="search" placeholder="Tim kiem...">
+        <button id="btn-refresh">Tai lai</button>
+        <button id="btn-logout" style="margin-left:auto">Dang xuat</button>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>So</th>
+              <th>Nha mang</th>
+              <th>Gia</th>
+              <th>Trang thai</th>
+              <th>...</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Don hang moi nhat</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>So sim</th>
+              <th>Gia</th>
+              <th>Khach</th>
+              <th>Trang thai</th>
+              <th>Thoi gian</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-orders"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/api.js"></script>
+  <script src="./assets/js/layout.js"></script>
+  <script src="./assets/js/admin.js"></script>
+</body>
+</html>

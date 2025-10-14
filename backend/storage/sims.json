@@ -1,0 +1,23 @@
+[
+  {
+    "id": "16900000000001",
+    "so": "0901234567",
+    "nha_mang": "mobifone",
+    "gia": 150000,
+    "trang_thai": "con_hang"
+  },
+  {
+    "id": "16900000000002",
+    "so": "0912345678",
+    "nha_mang": "vinaphone",
+    "gia": 180000,
+    "trang_thai": "con_hang"
+  },
+  {
+    "id": "16900000000003",
+    "so": "0987654321",
+    "nha_mang": "viettel",
+    "gia": 200000,
+    "trang_thai": "het_hang"
+  }
+]

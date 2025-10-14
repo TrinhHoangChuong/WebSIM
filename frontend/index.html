@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SimMobifone</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <main>
+    <section>
+      <p>Chao mung ban den cua hang SimMobifone.</p>
+      <p>
+        <a href="./login.html">Dang nhap</a> | 
+        <a href="./public.html">Danh sach SIM</a> | 
+        <a href="./deal.html">Deal SIM</a> | 
+        <a href="./checkout.html?simId=">Thanh toan</a>
+      </p>
+    </section>
+  </main>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/api.js"></script>
+  <script src="./assets/js/layout.js"></script>
+  <script>
+    (function(){
+      try {
+        const auth = JSON.parse(localStorage.getItem('auth'));
+        if (auth && auth.user && auth.user.role) {
+          if (auth.user.role === 'admin') location.href = './admin.html';
+          else location.href = './customer.html';
+        }
+      } catch(_) {}
+    })();
+  </script>
+</body>
+</html>
