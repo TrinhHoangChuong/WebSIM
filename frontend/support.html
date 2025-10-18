@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hỗ trợ khách hàng - SIM Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-mobile-alt me-2"></i>SIM Store
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sims.html">Danh sách SIM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="support.html">Hỗ trợ</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <div class="input-group me-3" style="width: 300px;">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm SIM..." id="searchInput">
+                        <button class="btn btn-outline-light" type="button" id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-light" onclick="showLoginModal()">
+                            <i class="fas fa-sign-in-alt me-1"></i>Đăng nhập
+                        </button>
+                        <button class="btn btn-light" onclick="showRegisterModal()">
+                            <i class="fas fa-user-plus me-1"></i>Đăng ký
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main style="margin-top: 80px;">
+        <!-- Page Header -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="display-5 fw-bold text-primary mb-3">Hỗ trợ khách hàng</h1>
+                        <p class="lead text-muted">Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Methods -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="contact-card text-center p-4">
+                            <div class="contact-icon mb-3">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h4 class="fw-bold">Hotline</h4>
+                            <p class="text-muted mb-3">Gọi ngay để được tư vấn</p>
+                            <a href="tel:1900xxxx" class="btn btn-primary">
+                                <i class="fas fa-phone me-2"></i>1900-xxxx
+                            </a>
+                            <p class="text-muted mt-2 small">8:00 - 22:00 hàng ngày</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-card text-center p-4">
+                            <div class="contact-icon mb-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h4 class="fw-bold">Email</h4>
+                            <p class="text-muted mb-3">Gửi email cho chúng tôi</p>
+                            <a href="mailto:support@simstore.com" class="btn btn-primary">
+                                <i class="fas fa-envelope me-2"></i>support@simstore.com
+                            </a>
+                            <p class="text-muted mt-2 small">Phản hồi trong 24h</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-card text-center p-4">
+                            <div class="contact-icon mb-3">
+                                <i class="fab fa-facebook-messenger"></i>
+                            </div>
+                            <h4 class="fw-bold">Messenger</h4>
+                            <p class="text-muted mb-3">Chat trực tiếp với chúng tôi</p>
+                            <a href="#" class="btn btn-primary">
+                                <i class="fab fa-facebook-messenger me-2"></i>Chat ngay
+                            </a>
+                            <p class="text-muted mt-2 small">Hỗ trợ 24/7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <h2 class="display-5 fw-bold text-primary">Câu hỏi thường gặp</h2>
+                        <p class="lead text-muted">Những câu hỏi phổ biến từ khách hàng</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        Làm thế nào để đăng ký SIM chính chủ?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Để đăng ký SIM chính chủ, bạn cần:</p>
+                                        <ol>
+                                            <li>Chuẩn bị CMND/CCCD còn hạn sử dụng</li>
+                                            <li>Đến cửa hàng của chúng tôi hoặc đăng ký online</li>
+                                            <li>Điền đầy đủ thông tin cá nhân</li>
+                                            <li>Chụp ảnh CMND/CCCD rõ nét</li>
+                                            <li>Xác thực OTP qua SMS</li>
+                                        </ol>
+                                        <p><strong>Lưu ý:</strong> Quá trình đăng ký có thể mất 1-3 ngày làm việc.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        Chính sách đổi trả SIM như thế nào?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Chúng tôi áp dụng chính sách đổi trả linh hoạt:</p>
+                                        <ul>
+                                            <li><strong>Đổi trả trong 7 ngày:</strong> Nếu SIM không hoạt động do lỗi kỹ thuật</li>
+                                            <li><strong>Đổi trả trong 3 ngày:</strong> Nếu SIM không đúng với mô tả</li>
+                                            <li><strong>Không đổi trả:</strong> Nếu SIM đã được kích hoạt và sử dụng</li>
+                                        </ul>
+                                        <p><strong>Điều kiện:</strong> SIM phải còn nguyên vẹn, chưa sử dụng và có hóa đơn mua hàng.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        Làm sao để kiểm tra SIM còn hạn sử dụng?
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Bạn có thể kiểm tra hạn sử dụng SIM bằng các cách sau:</p>
+                                        <ul>
+                                            <li><strong>Gọi tổng đài:</strong> *101# (Viettel), *100# (Vinaphone), *109# (Mobifone)</li>
+                                            <li><strong>Ứng dụng:</strong> Tải app của nhà mạng để kiểm tra</li>
+                                            <li><strong>Website:</strong> Truy cập trang web chính thức của nhà mạng</li>
+                                            <li><strong>Liên hệ chúng tôi:</strong> Gọi hotline để được hỗ trợ kiểm tra</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                        Có được mua SIM trả góp không?
+                                    </button>
+                                </h2>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Hiện tại chúng tôi chưa hỗ trợ mua SIM trả góp. Tất cả giao dịch đều thanh toán một lần.</p>
+                                        <p>Tuy nhiên, chúng tôi có các chương trình ưu đãi:</p>
+                                        <ul>
+                                            <li>Giảm giá cho khách hàng mua nhiều SIM</li>
+                                            <li>Ưu đãi đặc biệt cho khách hàng thân thiết</li>
+                                            <li>Chương trình tích điểm đổi quà</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                        Bảo mật thông tin khách hàng như thế nào?
+                                    </button>
+                                </h2>
+                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <p>Chúng tôi cam kết bảo mật thông tin khách hàng:</p>
+                                        <ul>
+                                            <li><strong>Mã hóa dữ liệu:</strong> Tất cả thông tin được mã hóa SSL</li>
+                                            <li><strong>Không chia sẻ:</strong> Không bán thông tin cho bên thứ ba</li>
+                                            <li><strong>Tuân thủ pháp luật:</strong> Tuân thủ Luật An toàn thông tin</li>
+                                            <li><strong>Xóa dữ liệu:</strong> Xóa thông tin khi khách hàng yêu cầu</li>
+                                        </ul>
+                                        <p><strong>Cam kết:</strong> Thông tin của bạn được bảo vệ tuyệt đối.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="contact-form-container">
+                            <div class="text-center mb-5">
+                                <h2 class="display-5 fw-bold text-primary">Gửi yêu cầu hỗ trợ</h2>
+                                <p class="lead text-muted">Điền form bên dưới để chúng tôi có thể hỗ trợ bạn tốt nhất</p>
+                            </div>
+                            <form id="contactForm" class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="contactName" class="form-label">Họ và tên *</label>
+                                    <input type="text" class="form-control" id="contactName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contactEmail" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="contactEmail" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contactPhone" class="form-label">Số điện thoại</label>
+                                    <input type="tel" class="form-control" id="contactPhone">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contactSubject" class="form-label">Chủ đề *</label>
+                                    <select class="form-control" id="contactSubject" required>
+                                        <option value="">Chọn chủ đề</option>
+                                        <option value="sim-info">Thông tin SIM</option>
+                                        <option value="purchase">Mua hàng</option>
+                                        <option value="technical">Hỗ trợ kỹ thuật</option>
+                                        <option value="complaint">Khiếu nại</option>
+                                        <option value="other">Khác</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="contactMessage" class="form-label">Nội dung *</label>
+                                    <textarea class="form-control" id="contactMessage" rows="5" required placeholder="Mô tả chi tiết vấn đề của bạn..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                        <label class="form-check-label" for="agreeTerms">
+                                            Tôi đồng ý với <a href="#" class="text-primary">điều khoản sử dụng</a> và <a href="#" class="text-primary">chính sách bảo mật</a>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg px-5">
+                                        <i class="fas fa-paper-plane me-2"></i>Gửi yêu cầu
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Hours -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <h3 class="fw-bold text-primary mb-4">Giờ làm việc</h3>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="business-hours-card">
+                                    <i class="fas fa-clock text-primary mb-3" style="font-size: 2rem;"></i>
+                                    <h5 class="fw-bold">Thứ 2 - Thứ 6</h5>
+                                    <p class="text-muted">8:00 - 22:00</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="business-hours-card">
+                                    <i class="fas fa-calendar-weekend text-primary mb-3" style="font-size: 2rem;"></i>
+                                    <h5 class="fw-bold">Thứ 7</h5>
+                                    <p class="text-muted">8:00 - 20:00</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="business-hours-card">
+                                    <i class="fas fa-calendar-day text-primary mb-3" style="font-size: 2rem;"></i>
+                                    <h5 class="fw-bold">Chủ nhật</h5>
+                                    <p class="text-muted">9:00 - 18:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-mobile-alt me-2"></i>SIM Store
+                    </h5>
+                    <p class="text-muted">
+                        Hệ thống quản lý SIM chuyên nghiệp, giúp bạn quản lý và bán SIM một cách hiệu quả.
+                    </p>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6 class="fw-bold mb-3">Liên kết</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-muted text-decoration-none">Trang chủ</a></li>
+                        <li><a href="sims.html" class="text-muted text-decoration-none">Danh sách SIM</a></li>
+                        <li><a href="support.html" class="text-muted text-decoration-none">Hỗ trợ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h6 class="fw-bold mb-3">Hỗ trợ</h6>
+                    <ul class="list-unstyled">
+                        <li><span class="text-muted">Hotline: 1900-xxxx</span></li>
+                        <li><span class="text-muted">Email: support@simstore.com</span></li>
+                        <li><span class="text-muted">Giờ làm việc: 8:00 - 22:00</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h6 class="fw-bold mb-3">Theo dõi chúng tôi</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-muted"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0 text-muted">&copy; 2024 SIM Store. Tất cả quyền được bảo lưu.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-muted text-decoration-none me-3">Chính sách bảo mật</a>
+                    <a href="#" class="text-muted text-decoration-none">Điều khoản sử dụng</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Đăng nhập</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="mb-0">Chưa có tài khoản? <a href="#" onclick="showRegisterModal()" class="text-primary">Đăng ký ngay</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Đăng ký tài khoản</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label for="registerName" class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control" id="registerName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPhone" class="form-label">Số điện thoại</label>
+                            <input type="tel" class="form-control" id="registerPhone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="registerPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Xác nhận mật khẩu</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="mb-0">Đã có tài khoản? <a href="#" onclick="showLoginModal()" class="text-primary">Đăng nhập</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>

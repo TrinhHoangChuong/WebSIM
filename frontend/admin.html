@@ -1,87 +1,403 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin - SimMobifone</title>
-  <link rel="stylesheet" href="./assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SIM Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>Admin - Quan ly SimMobifone</h1>
-  </header>
-  <main>
-    <section class="form-section">
-      <h2>Them sim</h2>
-      <form id="form-add">
-        <div class="grid">
-          <label>So sim <input id="so" required></label>
-          <label>Nha mang
-            <select id="nha_mang" required>
-              <option value="mobifone">Mobifone</option>
-              <option value="vinaphone">Vinaphone</option>
-              <option value="viettel">Viettel</option>
-              <option value="vietnamobile">Vietnamobile</option>
-            </select>
-          </label>
-          <label>Gia (VND) <input id="gia" type="number" min="1000" step="1000" required></label>
-          <label>Trang thai
-            <select id="trang_thai">
-              <option value="con_hang">Con hang</option>
-              <option value="het_hang">Het hang</option>
-            </select>
-          </label>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-mobile-alt me-2"></i>SIM Store Admin
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Trang chủ
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>Admin
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="adminManager.viewProfile()">
+                                <i class="fas fa-user me-2"></i>Thông tin cá nhân
+                            </a></li>
+                            <li><a class="dropdown-item" href="#" onclick="adminManager.logout()">
+                                <i class="fas fa-sign-out-alt me-2"></i>Đăng xuất
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button type="submit">Them</button>
-        <span id="form-msg" class="msg"></span>
-      </form>
-    </section>
+    </nav>
 
-    <section>
-      <h2>Danh sach sim</h2>
-      <div class="toolbar">
-        <input id="search" placeholder="Tim kiem...">
-        <button id="btn-refresh">Tai lai</button>
-        <button id="btn-logout" style="margin-left:auto">Dang xuat</button>
-      </div>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>So</th>
-              <th>Nha mang</th>
-              <th>Gia</th>
-              <th>Trang thai</th>
-              <th>...</th>
-            </tr>
-          </thead>
-          <tbody id="tbody"></tbody>
-        </table>
-      </div>
-    </section>
+    <!-- Main Content -->
+    <div class="container-fluid" style="margin-top: 80px;">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block admin-sidebar">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" onclick="adminManager.showDashboard()">
+                                <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="adminManager.showSims()">
+                                <i class="fas fa-mobile-alt me-2"></i>Quản lý SIM
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="adminManager.showCustomers()">
+                                <i class="fas fa-users me-2"></i>Khách hàng
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="adminManager.showOrders()">
+                                <i class="fas fa-shopping-cart me-2"></i>Đơn hàng
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="adminManager.showInventory()">
+                                <i class="fas fa-warehouse me-2"></i>Quản lý kho
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="adminManager.showReports()">
+                                <i class="fas fa-chart-bar me-2"></i>Báo cáo
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="adminManager.showSettings()">
+                                <i class="fas fa-cog me-2"></i>Cài đặt
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-    <section>
-      <h2>Don hang moi nhat</h2>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Order</th>
-              <th>So sim</th>
-              <th>Gia</th>
-              <th>Khach</th>
-              <th>Trang thai</th>
-              <th>Thoi gian</th>
-            </tr>
-          </thead>
-          <tbody id="tbody-orders"></tbody>
-        </table>
-      </div>
-    </section>
-  </main>
-  <script src="./assets/js/utils.js"></script>
-  <script src="./assets/js/api.js"></script>
-  <script src="./assets/js/layout.js"></script>
-  <script src="./assets/js/admin.js"></script>
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 admin-content">
+                <!-- Dashboard Section -->
+                <div id="dashboardSection">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Dashboard</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group me-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="adminManager.exportData()">
+                                    <i class="fas fa-download me-1"></i>Xuất dữ liệu
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary" onclick="adminManager.addSim()">
+                                <i class="fas fa-plus me-1"></i>Thêm SIM
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="row mb-4">
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="stats-card">
+                                <div class="stats-icon bg-primary">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="stats-content">
+                                    <div class="stats-number" id="totalSims">0</div>
+                                    <div class="stats-label">Tổng SIM</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="stats-card">
+                                <div class="stats-icon bg-success">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="stats-content">
+                                    <div class="stats-number" id="availableSims">0</div>
+                                    <div class="stats-label">SIM còn hàng</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="stats-card">
+                                <div class="stats-icon bg-warning">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stats-content">
+                                    <div class="stats-number" id="totalCustomers">0</div>
+                                    <div class="stats-label">Khách hàng</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="stats-card">
+                                <div class="stats-icon bg-info">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="stats-content">
+                                    <div class="stats-number" id="totalOrders">0</div>
+                                    <div class="stats-label">Đơn hàng</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <div class="row mb-4">
+                        <div class="col-lg-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Biểu đồ bán hàng</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="salesChart" width="400" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">SIM theo nhà mạng</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="carrierChart" width="400" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">SIM mới nhất</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Số SIM</th>
+                                                    <th>Nhà mạng</th>
+                                                    <th>Giá</th>
+                                                    <th>Trạng thái</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="recentSims">
+                                                <!-- Recent SIMs will be loaded here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Cảnh báo</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div id="alertsList">
+                                        <!-- Alerts will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SIMs Management Section -->
+                <div id="simsSection" style="display: none;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Quản lý SIM</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <button type="button" class="btn btn-sm btn-primary" onclick="adminManager.addSim()">
+                                <i class="fas fa-plus me-1"></i>Thêm SIM
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- SIMs Table -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Số SIM</th>
+                                            <th>Nhà mạng</th>
+                                            <th>Giá</th>
+                                            <th>Trạng thái</th>
+                                            <th>Ngày thêm</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="simsTableBody">
+                                        <!-- SIMs will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customers Management Section -->
+                <div id="customersSection" style="display: none;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Quản lý khách hàng</h1>
+                    </div>
+
+                    <!-- Customers Table -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Tên</th>
+                                            <th>Email</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Ngày đăng ký</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="customersTableBody">
+                                        <!-- Customers will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other sections will be added here -->
+                <div id="ordersSection" style="display: none;">
+                    <h1 class="h2">Quản lý đơn hàng</h1>
+                    <p class="text-muted">Tính năng đang được phát triển...</p>
+                </div>
+
+                <div id="inventorySection" style="display: none;">
+                    <h1 class="h2">Quản lý kho</h1>
+                    <p class="text-muted">Tính năng đang được phát triển...</p>
+                </div>
+
+                <div id="reportsSection" style="display: none;">
+                    <h1 class="h2">Báo cáo</h1>
+                    <p class="text-muted">Tính năng đang được phát triển...</p>
+                </div>
+
+                <div id="settingsSection" style="display: none;">
+                    <h1 class="h2">Cài đặt</h1>
+                    <p class="text-muted">Tính năng đang được phát triển...</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add SIM Modal -->
+    <div class="modal fade" id="addSimModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm SIM mới</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addSimForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="simNumber" class="form-label">Số SIM *</label>
+                                    <input type="text" class="form-control" id="simNumber" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="simType" class="form-label">Nhà mạng *</label>
+                                    <select class="form-control" id="simType" required>
+                                        <option value="">Chọn nhà mạng</option>
+                                        <option value="Viettel">Viettel</option>
+                                        <option value="Vinaphone">Vinaphone</option>
+                                        <option value="Mobifone">Mobifone</option>
+                                        <option value="Vietnamobile">Vietnamobile</option>
+                                        <option value="Gmobile">Gmobile</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="simPrice" class="form-label">Giá bán *</label>
+                                    <input type="number" class="form-control" id="simPrice" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="originalPrice" class="form-label">Giá gốc</label>
+                                    <input type="number" class="form-control" id="originalPrice">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="simDescription" class="form-label">Mô tả</label>
+                            <textarea class="form-control" id="simDescription" rows="3"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="simStatus" class="form-label">Trạng thái</label>
+                                    <select class="form-control" id="simStatus">
+                                        <option value="available">Còn hàng</option>
+                                        <option value="sold">Đã bán</option>
+                                        <option value="expired">Hết hạn</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="isFeatured" class="form-label">SIM nổi bật</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="isFeatured">
+                                        <label class="form-check-label" for="isFeatured">
+                                            Hiển thị trên trang chủ
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" onclick="adminManager.saveSim()">Lưu SIM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/admin.js"></script>
 </body>
 </html>
