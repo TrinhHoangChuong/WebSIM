@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIM Store - Hệ thống quản lý SIM</title>
+    <title>Danh sách SIM - SIM Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
@@ -21,10 +21,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Trang chủ</a>
+                        <a class="nav-link" href="index.html">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="sims.html">Danh sách SIM</a>
+                        <a class="nav-link active" href="sims.html">Danh sách SIM</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="support.html">Hỗ trợ</a>
@@ -50,122 +50,153 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="row align-items-center min-vh-100">
-                <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold text-white mb-4">
-                        Hệ thống quản lý SIM chuyên nghiệp
-                    </h1>
-                    <p class="lead text-white mb-4">
-                        Quản lý, theo dõi và bán SIM một cách hiệu quả với giao diện hiện đại và tính năng đầy đủ
-                    </p>
-                    <div class="d-flex gap-3">
-                        <a href="sims.html" class="btn btn-light btn-lg px-4">
-                            <i class="fas fa-mobile-alt me-2"></i>Xem SIM
-                        </a>
-                        <a href="support.html" class="btn btn-outline-light btn-lg px-4">
-                            <i class="fas fa-question-circle me-2"></i>Hỗ trợ
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="hero-image">
-                        <i class="fas fa-mobile-alt"></i>
+    <!-- Main Content -->
+    <main style="margin-top: 80px;">
+        <!-- Page Header -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="display-5 fw-bold text-primary mb-3">Danh sách SIM</h1>
+                        <p class="lead text-muted">Tìm kiếm và lựa chọn SIM phù hợp với nhu cầu của bạn</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="row text-center mb-5">
-                <div class="col-12">
-                    <h2 class="display-5 fw-bold text-primary">Tính năng nổi bật</h2>
-                    <p class="lead text-muted">Hệ thống quản lý SIM toàn diện với đầy đủ tính năng</p>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-database"></i>
+        <!-- Search and Filter Section -->
+        <section class="py-4">
+            <div class="container">
+                <div class="search-container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="filter-group">
+                                <div class="form-group">
+                                    <label for="searchSim" class="form-label">Tìm kiếm SIM</label>
+                                    <input type="text" class="form-control" id="searchSim" placeholder="Nhập số SIM hoặc từ khóa...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="filterType" class="form-label">Loại SIM</label>
+                                    <select class="form-control" id="filterType">
+                                        <option value="">Tất cả loại</option>
+                                        <option value="Viettel">Viettel</option>
+                                        <option value="Vinaphone">Vinaphone</option>
+                                        <option value="Mobifone">Mobifone</option>
+                                        <option value="Vietnamobile">Vietnamobile</option>
+                                        <option value="Gmobile">Gmobile</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="filterPrice" class="form-label">Khoảng giá</label>
+                                    <select class="form-control" id="filterPrice">
+                                        <option value="">Tất cả giá</option>
+                                        <option value="0-100000">Dưới 100.000đ</option>
+                                        <option value="100000-500000">100.000đ - 500.000đ</option>
+                                        <option value="500000-1000000">500.000đ - 1.000.000đ</option>
+                                        <option value="1000000-5000000">1.000.000đ - 5.000.000đ</option>
+                                        <option value="5000000-999999999">Trên 5.000.000đ</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="filterStatus" class="form-label">Trạng thái</label>
+                                    <select class="form-control" id="filterStatus">
+                                        <option value="">Tất cả trạng thái</option>
+                                        <option value="available">Còn hàng</option>
+                                        <option value="sold">Đã bán</option>
+                                        <option value="expired">Hết hạn</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <h4 class="fw-bold">Quản lý SIM</h4>
-                        <p class="text-muted">Thêm, sửa, xóa thông tin SIM với đầy đủ chi tiết</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-warehouse"></i>
+                        <div class="col-lg-4">
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary" onclick="applyFilters()">
+                                    <i class="fas fa-search me-2"></i>Tìm kiếm
+                                </button>
+                                <button class="btn btn-outline-secondary" onclick="clearFilters()">
+                                    <i class="fas fa-times me-2"></i>Xóa bộ lọc
+                                </button>
+                            </div>
                         </div>
-                        <h4 class="fw-bold">Quản lý kho</h4>
-                        <p class="text-muted">Theo dõi tồn kho, cảnh báo hết hàng tự động</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <h4 class="fw-bold">Tìm kiếm thông minh</h4>
-                        <p class="text-muted">Tìm kiếm SIM theo đầu số, giá tiền, loại SIM</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h4 class="fw-bold">Quản lý khách hàng</h4>
-                        <p class="text-muted">Theo dõi thông tin khách hàng và lịch sử mua hàng</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h4 class="fw-bold">Bảo mật cao</h4>
-                        <p class="text-muted">Xác thực OTP, phân quyền người dùng an toàn</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center p-4">
-                        <div class="feature-icon mb-3">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h4 class="fw-bold">Responsive</h4>
-                        <p class="text-muted">Giao diện tối ưu cho mọi thiết bị</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Featured SIMs Section -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row text-center mb-5">
-                <div class="col-12">
-                    <h2 class="display-5 fw-bold text-primary">SIM nổi bật</h2>
-                    <p class="lead text-muted">Những SIM đẹp và ý nghĩa được yêu thích nhất</p>
+        <!-- SIMs Grid -->
+        <section class="py-4">
+            <div class="container">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <span class="text-muted me-3">Sắp xếp theo:</span>
+                            <select class="form-control" id="sortBy" style="width: auto;">
+                                <option value="price-asc">Giá tăng dần</option>
+                                <option value="price-desc">Giá giảm dần</option>
+                                <option value="number-asc">Số SIM tăng dần</option>
+                                <option value="number-desc">Số SIM giảm dần</option>
+                                <option value="date-desc">Mới nhất</option>
+                                <option value="date-asc">Cũ nhất</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <div class="d-flex align-items-center justify-content-md-end">
+                            <span class="text-muted me-3">Hiển thị:</span>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-outline-primary active" onclick="setViewMode('grid')">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-primary" onclick="setViewMode('list')">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Results Info -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Tìm thấy <span id="resultsCount">0</span> SIM phù hợp với tiêu chí tìm kiếm
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SIMs Grid/List -->
+                <div id="simsContainer">
+                    <div class="row" id="simsGrid">
+                        <!-- SIMs will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div id="loadingSpinner" class="text-center py-5" style="display: none;">
+                    <div class="spinner"></div>
+                    <p class="text-muted mt-3">Đang tải dữ liệu...</p>
+                </div>
+
+                <!-- No Results -->
+                <div id="noResults" class="text-center py-5" style="display: none;">
+                    <i class="fas fa-search text-muted" style="font-size: 4rem;"></i>
+                    <h4 class="text-muted mt-3">Không tìm thấy SIM nào</h4>
+                    <p class="text-muted">Hãy thử thay đổi tiêu chí tìm kiếm của bạn</p>
+                    <button class="btn btn-primary" onclick="clearFilters()">
+                        <i class="fas fa-refresh me-2"></i>Xóa bộ lọc
+                    </button>
+                </div>
+
+                <!-- Pagination -->
+                <nav aria-label="SIM pagination" class="mt-4">
+                    <ul class="pagination" id="pagination">
+                        <!-- Pagination will be generated here -->
+                    </ul>
+                </nav>
             </div>
-            <div class="row g-4" id="featuredSims">
-                <!-- Featured SIMs will be loaded here -->
-            </div>
-            <div class="text-center mt-4">
-                <a href="sims.html" class="btn btn-primary btn-lg">
-                    <i class="fas fa-eye me-2"></i>Xem tất cả SIM
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="bg-dark text-white py-5">
@@ -293,5 +324,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/auth.js"></script>
+    <script src="assets/js/sims.js"></script>
 </body>
 </html>
