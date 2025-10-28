@@ -1,0 +1,301 @@
+/* Sim Thăng Long Clone Styles */
+:root {
+    --primary-green: #00A651;
+    --secondary-green: #00803E;
+    --gold: #FFD700;
+    --orange: #FF6B35;
+    --dark: #1a1a1a;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
+}
+
+/* Header */
+.header-top {
+    background: var(--primary-green);
+    color: white;
+    padding: 8px 0;
+    font-size: 0.9rem;
+}
+
+.main-header {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 15px 0;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+.logo a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-input {
+    border: 2px solid var(--primary-green);
+    border-radius: 25px;
+    padding: 12px 50px 12px 20px;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.search-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-green);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    color: white;
+}
+
+/* Navigation */
+.main-nav {
+    background: var(--dark);
+    padding: 0;
+}
+
+.nav-link {
+    color: white !important;
+    padding: 15px 20px !important;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: var(--primary-green) !important;
+    color: white !important;
+}
+
+/* Sidebar */
+.sidebar {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.sidebar h5 {
+    color: var(--primary-green);
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-green);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 8px;
+}
+
+.sidebar a {
+    color: #666;
+    text-decoration: none;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.sidebar a:hover {
+    background: var(--primary-green);
+    color: white;
+}
+
+/* SIM Cards */
+.sim-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.sim-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    border-color: var(--primary-green);
+}
+
+.sim-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.sim-price {
+    font-size: 1.3rem;
+    color: var(--orange);
+    font-weight: 700;
+}
+
+.network-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.network-mobifone { background: var(--primary-green); }
+.network-viettel { background: #E31E24; }
+.network-vinaphone { background: #0066CC; }
+.network-vietnamobile { background: #FF6600; }
+.network-itelecom { background: #8B4513; }
+
+.btn-buy {
+    background: var(--primary-green);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.btn-buy:hover {
+    background: var(--secondary-green);
+    transform: translateY(-2px);
+}
+
+/* Stats Banner */
+.stats-banner {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+    color: white;
+    padding: 40px 0;
+    margin: 20px 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+}
+
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Footer */
+.footer {
+    background: var(--dark);
+    color: white;
+    padding: 60px 0 40px;
+    margin-top: 60px;
+}
+
+.footer h5 {
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: var(--gold);
+}
+
+/* Pagination */
+.pagination .page-link {
+    color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+.pagination .page-link:hover {
+    color: white;
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        margin-bottom: 30px;
+    }
+    
+    .sim-number {
+        font-size: 1.2rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+
+/* Loading Spinner */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.sim-card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-green);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-green);
+}

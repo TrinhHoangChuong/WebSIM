@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Định Giá SIM - Sim Thăng Long</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #00A651;
+            --secondary-green: #00803E;
+            --gold: #FFD700;
+            --orange: #FF6B35;
+            --dark: #1a1a1a;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+        }
+        
+        .header-top {
+            background: var(--primary-green);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .main-header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+        
+        .main-nav {
+            background: var(--dark);
+            padding: 0;
+        }
+        
+        .nav-link {
+            color: white !important;
+            padding: 15px 20px !important;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary-green) !important;
+            color: white !important;
+        }
+        
+        .pricing-intro {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        
+        .pricing-intro h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-intro p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .pricing-form {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 0.2rem rgba(0, 166, 81, 0.25);
+        }
+        
+        .btn-pricing {
+            background: var(--primary-green);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-pricing:hover {
+            background: var(--secondary-green);
+            transform: translateY(-2px);
+        }
+        
+        .result-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--primary-green);
+        }
+        
+        .price-display {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--orange);
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .price-range {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .factor-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .factor-item:last-child {
+            border-bottom: none;
+        }
+        
+        .factor-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .factor-value {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+        
+        .guide-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .guide-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .guide-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 40px;
+            margin-top: 60px;
+        }
+        
+        .footer h5 {
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: var(--gold);
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <i class="fas fa-phone me-2"></i>
+                    Hotline: 024.6666.6666 | 
+                    <i class="fas fa-envelope ms-3 me-2"></i>
+                    Email: info@simthanglong.vn
+                </div>
+                <div class="col-md-6 text-end">
+                    <i class="fas fa-truck me-2"></i>
+                    Miễn phí giao hàng toàn quốc
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="logo">
+                        <i class="fas fa-sim-card me-2"></i>
+                        <a href="index.html" style="color: inherit; text-decoration: none;">Sim Thăng Long</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="search-box">
+                        <input type="text" class="form-control" placeholder="Tìm sim theo số, đầu số, đuôi số..." id="searchInput">
+                    </div>
+                </div>
+                <div class="col-md-3 text-end">
+                    <button class="btn btn-outline-success me-2" onclick="showLoginModal()">
+                        <i class="fas fa-sign-in-alt me-1"></i>Đăng nhập
+                    </button>
+                    <button class="btn btn-success" onclick="showRegisterModal()">
+                        <i class="fas fa-user-plus me-1"></i>Đăng ký
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg main-nav">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="search.html"><i class="fas fa-mobile-alt me-1"></i>SIM SỐ ĐẸP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="feng-shui.html"><i class="fas fa-yin-yang me-1"></i>SIM PHONG THỦY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-calculator me-1"></i>ĐỊNH GIÁ SIM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="payment.html"><i class="fas fa-credit-card me-1"></i>THANH TOÁN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html"><i class="fas fa-newspaper me-1"></i>TIN TỨC</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Pricing Intro -->
+    <div class="pricing-intro">
+        <div class="container text-center">
+            <h1><i class="fas fa-calculator me-3"></i>ĐỊNH GIÁ SIM</h1>
+            <p>Nhập số điện thoại để được định giá chính xác và miễn phí</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Pricing Form -->
+        <div class="pricing-form">
+            <h3 class="text-center mb-4"><i class="fas fa-mobile-alt me-2"></i>Nhập số điện thoại cần định giá</h3>
+            <form id="pricingForm">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            <input type="text" class="form-control" id="phoneNumber" placeholder="Nhập số điện thoại (VD: 0901234567)" required>
+                            <div class="form-text">Nhập số điện thoại 10-11 chữ số</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label class="form-label">Nhà mạng</label>
+                            <select class="form-control" id="network">
+                                <option value="">Tự động nhận diện</option>
+                                <option value="Viettel">Viettel</option>
+                                <option value="Vinaphone">Vinaphone</option>
+                                <option value="Mobifone">Mobifone</option>
+                                <option value="Vietnamobile">Vietnamobile</option>
+                                <option value="iTelecom">iTelecom</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-pricing">
+                        <i class="fas fa-calculator me-2"></i>Định giá ngay
+                    </button>
+                </div>
+            </form>
+            
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner-border text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">Đang tính toán giá...</p>
+            </div>
+            
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+        </div>
+
+        <!-- Pricing Result -->
+        <div class="result-card" id="pricingResult" style="display: none;">
+            <h3 class="text-center mb-4"><i class="fas fa-chart-line me-2"></i>Kết quả định giá</h3>
+            <div class="price-display" id="estimatedPrice"></div>
+            <div class="price-range" id="priceRange"></div>
+            <div id="pricingFactors"></div>
+            <div class="text-center mt-4">
+                <button class="btn btn-success me-2" onclick="buyThisSim()">
+                    <i class="fas fa-shopping-cart me-1"></i>Mua SIM này
+                </button>
+                <button class="btn btn-outline-primary" onclick="findSimilarSims()">
+                    <i class="fas fa-search me-1"></i>Tìm SIM tương tự
+                </button>
+            </div>
+        </div>
+
+        <!-- Pricing Guide -->
+        <div class="guide-card">
+            <h3 class="mb-4"><i class="fas fa-info-circle me-2"></i>Các yếu tố định giá SIM</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="guide-item">
+                        <div class="guide-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div>
+                            <h6>Loại SIM</h6>
+                            <p class="mb-0">Tứ quý, Ngũ quý, Tam hoa, VIP...</p>
+                        </div>
+                    </div>
+                    <div class="guide-item">
+                        <div class="guide-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div>
+                            <h6>Nhà mạng</h6>
+                            <p class="mb-0">Viettel, Vinaphone, Mobifone...</p>
+                        </div>
+                    </div>
+                    <div class="guide-item">
+                        <div class="guide-icon">
+                            <i class="fas fa-sort-numeric-up"></i>
+                        </div>
+                        <div>
+                            <h6>Đầu số</h6>
+                            <p class="mb-0">090, 091, 096, 097...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="guide-item">
+                        <div class="guide-icon">
+                            <i class="fas fa-yin-yang"></i>
+                        </div>
+                        <div>
+                            <h6>Phong thủy</h6>
+                            <p class="mb-0">Số may mắn, hợp mệnh</p>
+                        </div>
+                    </div>
+                    <div class="guide-item">
+                        <div class="guide-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div>
+                            <h6>Năm sinh</h6>
+                            <p class="mb-0">SIM có số năm sinh</p>
+                        </div>
+                    </div>
+                    <div class="guide-item">
+                        <div class="guide-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div>
+                            <h6>Độ hiếm</h6>
+                            <p class="mb-0">Tần suất xuất hiện</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Tips -->
+        <div class="guide-card">
+            <h3 class="mb-4"><i class="fas fa-lightbulb me-2"></i>Mẹo định giá SIM</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="text-center p-3">
+                        <i class="fas fa-check-circle text-success fs-1 mb-3"></i>
+                        <h5>Kiểm tra chính xác</h5>
+                        <p>Nhập đúng số điện thoại để có kết quả chính xác nhất</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center p-3">
+                        <i class="fas fa-clock text-warning fs-1 mb-3"></i>
+                        <h5>Giá thay đổi</h5>
+                        <p>Giá SIM có thể thay đổi theo thời gian và thị trường</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center p-3">
+                        <i class="fas fa-handshake text-info fs-1 mb-3"></i>
+                        <h5>Thương lượng</h5>
+                        <p>Liên hệ hotline để được tư vấn và thương lượng giá tốt nhất</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-mobile-alt me-2"></i>Sim Thăng Long</h5>
+                    <p class="mb-3">Hệ thống phân phối Sim số đẹp lớn nhất Việt Nam. Cam kết giá tốt nhất, hỗ trợ 24/7.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="fab fa-facebook fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-zalo fs-4"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Liên hệ</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-phone me-2"></i>Hotline: 0379.567.000</li>
+                        <li><i class="fas fa-envelope me-2"></i>Email: info@simthanglong.vn</li>
+                        <li><i class="fas fa-clock me-2"></i>Giờ làm việc: 8:00 - 22:00</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i>31 Ung Văn Khiêm , Tp.HCM</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Hỗ trợ</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fas fa-question-circle me-2"></i>Câu hỏi thường gặp</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt me-2"></i>Chính sách bảo mật</a></li>
+                        <li><a href="#"><i class="fas fa-undo me-2"></i>Chính sách đổi trả</a></li>
+                        <li><a href="#"><i class="fas fa-truck me-2"></i>Miễn phí giao hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr style="border-color: #444;">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0 text-muted">
+                        © Sim Thăng Long - Hệ thống phân phối Sim số đẹp lớn nhất Việt Nam!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const API_BASE = '../api/';
+        
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN').format(price) + '₫';
+        }
+        
+        function detectNetwork(phoneNumber) {
+            const prefix = phoneNumber.substring(0, 3);
+            const networkMap = {
+                '090': 'Mobifone',
+                '091': 'Vinaphone',
+                '092': 'Vietnamobile',
+                '096': 'Viettel',
+                '097': 'Viettel',
+                '098': 'Viettel',
+                '081': 'Vietnamobile',
+                '082': 'Vietnamobile',
+                '083': 'Vietnamobile',
+                '084': 'Vietnamobile',
+                '085': 'Vietnamobile',
+                '086': 'Vietnamobile',
+                '087': 'Vietnamobile',
+                '088': 'Vietnamobile',
+                '089': 'Vietnamobile',
+                '070': 'iTelecom',
+                '071': 'iTelecom',
+                '072': 'iTelecom',
+                '073': 'iTelecom',
+                '074': 'iTelecom',
+                '075': 'iTelecom',
+                '076': 'iTelecom',
+                '077': 'iTelecom',
+                '078': 'iTelecom',
+                '079': 'iTelecom',
+                '050': 'Viettel',
+                '051': 'Viettel',
+                '052': 'Viettel',
+                '053': 'Viettel',
+                '054': 'Viettel',
+                '055': 'Viettel',
+                '056': 'Viettel',
+                '057': 'Viettel',
+                '058': 'Viettel',
+                '059': 'Viettel',
+                '030': 'Viettel',
+                '031': 'Viettel',
+                '032': 'Viettel',
+                '033': 'Viettel',
+                '034': 'Viettel',
+                '035': 'Viettel',
+                '036': 'Viettel',
+                '037': 'Viettel',
+                '038': 'Viettel',
+                '039': 'Viettel'
+            };
+            return networkMap[prefix] || 'Unknown';
+        }
+        
+        function analyzeSimType(phoneNumber) {
+            const number = phoneNumber.replace(/\D/g, '');
+            const last4 = number.slice(-4);
+            const last3 = number.slice(-3);
+            
+            // Check for special patterns
+            if (/(\d)\1{3,}/.test(number)) {
+                return 'Sim Tứ quý trở lên';
+            }
+            
+            if (/(\d)\1{2}/.test(number)) {
+                return 'Sim Tam hoa';
+            }
+            
+            if (last4 === '8888' || last4 === '6666' || last4 === '9999') {
+                return 'Sim VIP';
+            }
+            
+            if (last3 === '888' || last3 === '666' || last3 === '999') {
+                return 'Sim Lộc phát';
+            }
+            
+            if (last3 === '383' || last3 === '838') {
+                return 'Sim Thần Tài';
+            }
+            
+            // Check for birth year
+            const birthYears = ['1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996'];
+            if (birthYears.some(year => number.includes(year))) {
+                return 'Sim Năm sinh';
+            }
+            
+            return 'Sim thường';
+        }
+        
+        function calculatePrice(phoneNumber, network, simType) {
+            let basePrice = 500000; // Base price 500k
+            
+            // Network multiplier
+            const networkMultiplier = {
+                'Viettel': 1.2,
+                'Vinaphone': 1.1,
+                'Mobifone': 1.0,
+                'Vietnamobile': 0.8,
+                'iTelecom': 0.7
+            };
+            
+            // SIM type multiplier
+            const typeMultiplier = {
+                'Sim Tứ quý trở lên': 10,
+                'Sim Tam hoa': 3,
+                'Sim VIP': 5,
+                'Sim Lộc phát': 2,
+                'Sim Thần Tài': 2,
+                'Sim Năm sinh': 1.5,
+                'Sim thường': 1
+            };
+            
+            // Calculate price
+            const multiplier = (networkMultiplier[network] || 1) * (typeMultiplier[simType] || 1);
+            const estimatedPrice = Math.round(basePrice * multiplier);
+            
+            // Add some randomness for realistic pricing
+            const variation = estimatedPrice * 0.2;
+            const finalPrice = estimatedPrice + (Math.random() - 0.5) * variation;
+            
+            return Math.max(350000, Math.round(finalPrice));
+        }
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+        
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+        
+        function hideMessages() {
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+        
+        async function priceSim(phoneNumber) {
+            hideMessages();
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('pricingResult').style.display = 'none';
+            
+            try {
+                // Validate phone number
+                const cleanNumber = phoneNumber.replace(/\D/g, '');
+                if (cleanNumber.length < 10 || cleanNumber.length > 11) {
+                    throw new Error('Số điện thoại phải có 10-11 chữ số');
+                }
+                
+                // Detect network
+                const network = document.getElementById('network').value || detectNetwork(cleanNumber);
+                if (network === 'Unknown') {
+                    throw new Error('Không thể nhận diện nhà mạng. Vui lòng chọn nhà mạng thủ công.');
+                }
+                
+                // Analyze SIM type
+                const simType = analyzeSimType(cleanNumber);
+                
+                // Calculate price
+                const estimatedPrice = calculatePrice(cleanNumber, network, simType);
+                const minPrice = Math.round(estimatedPrice * 0.8);
+                const maxPrice = Math.round(estimatedPrice * 1.2);
+                
+                // Display result
+                document.getElementById('estimatedPrice').textContent = formatPrice(estimatedPrice);
+                document.getElementById('priceRange').innerHTML = `
+                    <div class="text-center">
+                        <h6>Khoảng giá thị trường:</h6>
+                        <p class="mb-0"><strong>${formatPrice(minPrice)} - ${formatPrice(maxPrice)}</strong></p>
+                    </div>
+                `;
+                
+                // Display factors
+                document.getElementById('pricingFactors').innerHTML = `
+                    <h5 class="mb-3">Các yếu tố định giá:</h5>
+                    <div class="factor-item">
+                        <span class="factor-name">Số điện thoại:</span>
+                        <span class="factor-value">${phoneNumber}</span>
+                    </div>
+                    <div class="factor-item">
+                        <span class="factor-name">Nhà mạng:</span>
+                        <span class="factor-value">${network}</span>
+                    </div>
+                    <div class="factor-item">
+                        <span class="factor-name">Loại SIM:</span>
+                        <span class="factor-value">${simType}</span>
+                    </div>
+                    <div class="factor-item">
+                        <span class="factor-name">Độ hiếm:</span>
+                        <span class="factor-value">${simType === 'Sim thường' ? 'Thấp' : 'Cao'}</span>
+                    </div>
+                `;
+                
+                document.getElementById('pricingResult').style.display = 'block';
+                showSuccess('Định giá thành công!');
+                
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                document.getElementById('loadingSpinner').style.display = 'none';
+            }
+        }
+        
+        function buyThisSim() {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            alert(`Chức năng mua SIM ${phoneNumber} đang được phát triển`);
+        }
+        
+        function findSimilarSims() {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            window.location.href = `search.html?q=${phoneNumber}`;
+        }
+        
+        function showLoginModal() {
+            alert('Chức năng đăng nhập đang được phát triển');
+        }
+        
+        function showRegisterModal() {
+            alert('Chức năng đăng ký đang được phát triển');
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('pricingForm');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const phoneNumber = document.getElementById('phoneNumber').value;
+                if (phoneNumber) {
+                    priceSim(phoneNumber);
+                }
+            });
+            
+            // Auto-detect network when typing
+            document.getElementById('phoneNumber').addEventListener('input', function(e) {
+                const phoneNumber = e.target.value;
+                if (phoneNumber.length >= 3) {
+                    const detectedNetwork = detectNetwork(phoneNumber);
+                    if (detectedNetwork !== 'Unknown') {
+                        document.getElementById('network').value = detectedNetwork;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

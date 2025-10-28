@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin Tức - Sim Thăng Long</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #00A651;
+            --secondary-green: #00803E;
+            --gold: #FFD700;
+            --orange: #FF6B35;
+            --dark: #1a1a1a;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+        }
+        
+        .header-top {
+            background: var(--primary-green);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .main-header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+        
+        .main-nav {
+            background: var(--dark);
+            padding: 0;
+        }
+        
+        .nav-link {
+            color: white !important;
+            padding: 15px 20px !important;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary-green) !important;
+            color: white !important;
+        }
+        
+        .news-intro {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        
+        .news-intro h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .news-intro p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .news-title:hover {
+            color: var(--primary-green);
+        }
+        
+        .news-excerpt {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .news-date {
+            display: flex;
+            align-items: center;
+        }
+        
+        .news-date i {
+            margin-right: 5px;
+        }
+        
+        .news-category {
+            background: var(--primary-green);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .featured-news {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .featured-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .featured-content {
+            padding: 30px;
+        }
+        
+        .featured-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .featured-excerpt {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .sidebar h5 {
+            color: var(--primary-green);
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-green);
+        }
+        
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-item:last-child {
+            border-bottom: none;
+        }
+        
+        .sidebar-item:hover {
+            background: #f8f9fa;
+            padding-left: 10px;
+        }
+        
+        .sidebar-item img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+        
+        .sidebar-item-content h6 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+        
+        .sidebar-item-content p {
+            font-size: 0.8rem;
+            color: #999;
+            margin: 0;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            border: 2px solid var(--primary-green);
+            border-radius: 25px;
+            padding: 12px 50px 12px 20px;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-green);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 20px;
+            color: white;
+        }
+        
+        .category-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .category-list li {
+            margin-bottom: 10px;
+        }
+        
+        .category-list a {
+            color: #666;
+            text-decoration: none;
+            padding: 8px 15px;
+            display: block;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .category-list a:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+        
+        .pagination {
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .page-link {
+            color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+        
+        .page-link:hover {
+            background: var(--primary-green);
+            border-color: var(--primary-green);
+            color: white;
+        }
+        
+        .page-item.active .page-link {
+            background: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 40px;
+            margin-top: 60px;
+        }
+        
+        .footer h5 {
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: var(--gold);
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .no-news {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .no-news i {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <i class="fas fa-phone me-2"></i>
+                    Hotline: 024.6666.6666 | 
+                    <i class="fas fa-envelope ms-3 me-2"></i>
+                    Email: info@simthanglong.vn
+                </div>
+                <div class="col-md-6 text-end">
+                    <i class="fas fa-truck me-2"></i>
+                    Miễn phí giao hàng toàn quốc
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="logo">
+                        <i class="fas fa-sim-card me-2"></i>
+                        <a href="index.html" style="color: inherit; text-decoration: none;">Sim Thăng Long</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Tìm kiếm tin tức..." id="newsSearchInput">
+                        <button class="search-btn" onclick="searchNews()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-3 text-end">
+                    <button class="btn btn-outline-success me-2" onclick="showLoginModal()">
+                        <i class="fas fa-sign-in-alt me-1"></i>Đăng nhập
+                    </button>
+                    <button class="btn btn-success" onclick="showRegisterModal()">
+                        <i class="fas fa-user-plus me-1"></i>Đăng ký
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg main-nav">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="search.html"><i class="fas fa-mobile-alt me-1"></i>SIM SỐ ĐẸP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="feng-shui.html"><i class="fas fa-yin-yang me-1"></i>SIM PHONG THỦY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pricing.html"><i class="fas fa-calculator me-1"></i>ĐỊNH GIÁ SIM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="payment.html"><i class="fas fa-credit-card me-1"></i>THANH TOÁN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-newspaper me-1"></i>TIN TỨC</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- News Intro -->
+    <div class="news-intro">
+        <div class="container text-center">
+            <h1><i class="fas fa-newspaper me-3"></i>TIN TỨC</h1>
+            <p>Cập nhật những tin tức mới nhất về SIM số đẹp, công nghệ và thị trường</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <!-- Featured News -->
+                <div class="featured-news" id="featuredNews">
+                    <!-- Featured news will be loaded here -->
+                </div>
+
+                <!-- News List -->
+                <div id="newsList">
+                    <!-- News list will be loaded here -->
+                </div>
+
+                <!-- Pagination -->
+                <nav aria-label="News pagination">
+                    <ul class="pagination" id="newsPagination">
+                        <!-- Pagination will be loaded here -->
+                    </ul>
+                </nav>
+
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Đang tải tin tức...</p>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Search -->
+                <div class="sidebar">
+                    <h5><i class="fas fa-search me-2"></i>Tìm kiếm</h5>
+                    <div class="search-box">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm tin tức..." id="sidebarSearchInput">
+                        <button class="btn btn-success" onclick="searchNews()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="sidebar">
+                    <h5><i class="fas fa-tags me-2"></i>Danh mục</h5>
+                    <ul class="category-list">
+                        <li><a href="#" onclick="filterByCategory('all')">Tất cả</a></li>
+                        <li><a href="#" onclick="filterByCategory('sim-beautiful')">SIM số đẹp</a></li>
+                        <li><a href="#" onclick="filterByCategory('feng-shui')">Phong thủy</a></li>
+                        <li><a href="#" onclick="filterByCategory('technology')">Công nghệ</a></li>
+                        <li><a href="#" onclick="filterByCategory('market')">Thị trường</a></li>
+                        <li><a href="#" onclick="filterByCategory('promotion')">Khuyến mãi</a></li>
+                        <li><a href="#" onclick="filterByCategory('guide')">Hướng dẫn</a></li>
+                    </ul>
+                </div>
+
+                <!-- Recent News -->
+                <div class="sidebar">
+                    <h5><i class="fas fa-clock me-2"></i>Tin mới nhất</h5>
+                    <div id="recentNews">
+                        <!-- Recent news will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Popular News -->
+                <div class="sidebar">
+                    <h5><i class="fas fa-fire me-2"></i>Tin nổi bật</h5>
+                    <div id="popularNews">
+                        <!-- Popular news will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-mobile-alt me-2"></i>Sim Thăng Long</h5>
+                    <p class="mb-3">Hệ thống phân phối Sim số đẹp lớn nhất Việt Nam. Cam kết giá tốt nhất, hỗ trợ 24/7.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="fab fa-facebook fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-zalo fs-4"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Liên hệ</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-phone me-2"></i>Hotline: 024.6666.6666</li>
+                        <li><i class="fas fa-envelope me-2"></i>Email: info@simthanglong.vn</li>
+                        <li><i class="fas fa-clock me-2"></i>Giờ làm việc: 8:00 - 22:00</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i>263 Xã Đàn, Đống Đa, Hà Nội</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Hỗ trợ</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fas fa-question-circle me-2"></i>Câu hỏi thường gặp</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt me-2"></i>Chính sách bảo mật</a></li>
+                        <li><a href="#"><i class="fas fa-undo me-2"></i>Chính sách đổi trả</a></li>
+                        <li><a href="#"><i class="fas fa-truck me-2"></i>Miễn phí giao hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr style="border-color: #444;">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0 text-muted">
+                        © Sim Thăng Long - Hệ thống phân phối Sim số đẹp lớn nhất Việt Nam!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const API_BASE = '../api/';
+        let currentPage = 1;
+        let currentCategory = 'all';
+        let currentSearch = '';
+        
+        // Sample news data
+        const sampleNews = [
+            {
+                id: 1,
+                title: '6+ điểm giao dịch Mobifone tại Đà Nẵng đầy đủ, chi tiết',
+                excerpt: 'Tổng hợp đầy đủ các điểm giao dịch Mobifone tại Đà Nẵng với địa chỉ, giờ làm việc và dịch vụ chi tiết.',
+                content: 'Nội dung chi tiết bài viết...',
+                image: 'https://via.placeholder.com/400x200/00A651/FFFFFF?text=Mobifone+Da+Nang',
+                category: 'guide',
+                date: '2024-01-15',
+                featured: true
+            },
+            {
+                id: 2,
+                title: '5 cách kiểm tra điện thoại có hỗ trợ 5G không siêu nhanh',
+                excerpt: 'Hướng dẫn chi tiết 5 cách đơn giản để kiểm tra điện thoại có hỗ trợ mạng 5G hay không.',
+                content: 'Nội dung chi tiết bài viết...',
+                image: 'https://via.placeholder.com/400x200/0066CC/FFFFFF?text=5G+Check',
+                category: 'technology',
+                date: '2024-01-14',
+                featured: false
+            },
+            {
+                id: 3,
+                title: '30+ gói cước Mobifone trả trước Rẻ, nhiều Ưu đãi',
+                excerpt: 'Tổng hợp 30+ gói cước Mobifone trả trước với giá rẻ và nhiều ưu đãi hấp dẫn.',
+                content: 'Nội dung chi tiết bài viết...',
+                image: 'https://via.placeholder.com/400x200/00A651/FFFFFF?text=Mobifone+Packages',
+                category: 'promotion',
+                date: '2024-01-13',
+                featured: false
+            },
+            {
+                id: 4,
+                title: 'Hướng dẫn đăng ký gói cước 4G MobiFone 1 ngày - Giá rẻ, tiện lợi',
+                excerpt: 'Hướng dẫn chi tiết cách đăng ký gói cước 4G MobiFone 1 ngày với giá rẻ và tiện lợi.',
+                content: 'Nội dung chi tiết bài viết...',
+                image: 'https://via.placeholder.com/400x200/00A651/FFFFFF?text=4G+1+Day',
+                category: 'guide',
+                date: '2024-01-12',
+                featured: false
+            },
+            {
+                id: 5,
+                title: 'Đăng ký gói gọi nội mạng MobiFone, chỉ 5K gọi thả ga cả ngày',
+                excerpt: 'Hướng dẫn đăng ký gói gọi nội mạng MobiFone với giá chỉ 5K có thể gọi thả ga cả ngày.',
+                content: 'Nội dung chi tiết bài viết...',
+                image: 'https://via.placeholder.com/400x200/00A651/FFFFFF?text=Call+Package',
+                category: 'promotion',
+                date: '2024-01-11',
+                featured: false
+            },
+            {
+                id: 6,
+                title: 'Cách chọn SIM số đẹp hợp phong thủy theo mệnh',
+                excerpt: 'Hướng dẫn chi tiết cách chọn SIM số đẹp hợp phong thủy theo từng mệnh để mang lại may mắn.',
+                content: 'Nội dung chi tiết bài viết...',
+                image: 'https://via.placeholder.com/400x200/FF6B35/FFFFFF?text=Feng+Shui',
+                category: 'feng-shui',
+                date: '2024-01-10',
+                featured: false
+            }
+        ];
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('vi-VN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+        
+        function getCategoryName(category) {
+            const categories = {
+                'all': 'Tất cả',
+                'sim-beautiful': 'SIM số đẹp',
+                'feng-shui': 'Phong thủy',
+                'technology': 'Công nghệ',
+                'market': 'Thị trường',
+                'promotion': 'Khuyến mãi',
+                'guide': 'Hướng dẫn'
+            };
+            return categories[category] || category;
+        }
+        
+        function renderNewsCard(news) {
+            return `
+                <div class="news-card">
+                    <img src="${news.image}" alt="${news.title}" class="news-image">
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-category">${getCategoryName(news.category)}</span>
+                            <span class="news-date">
+                                <i class="fas fa-calendar"></i>
+                                ${formatDate(news.date)}
+                            </span>
+                        </div>
+                        <h3 class="news-title">
+                            <a href="news-detail.html?id=${news.id}" style="color: inherit; text-decoration: none;">
+                                ${news.title}
+                            </a>
+                        </h3>
+                        <p class="news-excerpt">${news.excerpt}</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function renderFeaturedNews(news) {
+            return `
+                <img src="${news.image}" alt="${news.title}" class="featured-image">
+                <div class="featured-content">
+                    <span class="news-category">${getCategoryName(news.category)}</span>
+                    <h2 class="featured-title">
+                        <a href="news-detail.html?id=${news.id}" style="color: inherit; text-decoration: none;">
+                            ${news.title}
+                        </a>
+                    </h2>
+                    <p class="featured-excerpt">${news.excerpt}</p>
+                    <div class="news-meta">
+                        <span class="news-date">
+                            <i class="fas fa-calendar"></i>
+                            ${formatDate(news.date)}
+                        </span>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function renderSidebarNews(news) {
+            return `
+                <div class="sidebar-item">
+                    <img src="${news.image}" alt="${news.title}">
+                    <div class="sidebar-item-content">
+                        <h6><a href="news-detail.html?id=${news.id}" style="color: inherit; text-decoration: none;">${news.title}</a></h6>
+                        <p>${formatDate(news.date)}</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function filterNews() {
+            let filteredNews = sampleNews;
+            
+            // Filter by category
+            if (currentCategory !== 'all') {
+                filteredNews = filteredNews.filter(news => news.category === currentCategory);
+            }
+            
+            // Filter by search
+            if (currentSearch) {
+                filteredNews = filteredNews.filter(news => 
+                    news.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                    news.excerpt.toLowerCase().includes(currentSearch.toLowerCase())
+                );
+            }
+            
+            return filteredNews;
+        }
+        
+        function loadNews() {
+            document.getElementById('loadingSpinner').style.display = 'block';
+            
+            setTimeout(() => {
+                const filteredNews = filterNews();
+                const featuredNews = filteredNews.find(news => news.featured);
+                const regularNews = filteredNews.filter(news => !news.featured);
+                
+                // Render featured news
+                if (featuredNews) {
+                    document.getElementById('featuredNews').innerHTML = renderFeaturedNews(featuredNews);
+                } else {
+                    document.getElementById('featuredNews').innerHTML = '';
+                }
+                
+                // Render regular news
+                if (regularNews.length > 0) {
+                    document.getElementById('newsList').innerHTML = regularNews.map(renderNewsCard).join('');
+                } else {
+                    document.getElementById('newsList').innerHTML = `
+                        <div class="no-news">
+                            <i class="fas fa-newspaper"></i>
+                            <h4>Không tìm thấy tin tức</h4>
+                            <p>Không có tin tức nào phù hợp với tiêu chí tìm kiếm của bạn.</p>
+                        </div>
+                    `;
+                }
+                
+                // Load sidebar content
+                loadSidebarContent();
+                
+                document.getElementById('loadingSpinner').style.display = 'none';
+            }, 500);
+        }
+        
+        function loadSidebarContent() {
+            // Recent news
+            const recentNews = sampleNews.slice(0, 5);
+            document.getElementById('recentNews').innerHTML = recentNews.map(renderSidebarNews).join('');
+            
+            // Popular news
+            const popularNews = sampleNews.slice(0, 3);
+            document.getElementById('popularNews').innerHTML = popularNews.map(renderSidebarNews).join('');
+        }
+        
+        function searchNews() {
+            const searchInput = document.getElementById('newsSearchInput') || document.getElementById('sidebarSearchInput');
+            currentSearch = searchInput.value;
+            currentPage = 1;
+            loadNews();
+        }
+        
+        function filterByCategory(category) {
+            currentCategory = category;
+            currentPage = 1;
+            loadNews();
+        }
+        
+        function showLoginModal() {
+            alert('Chức năng đăng nhập đang được phát triển');
+        }
+        
+        function showRegisterModal() {
+            alert('Chức năng đăng ký đang được phát triển');
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNews();
+            
+            // Search on Enter key
+            const searchInputs = document.querySelectorAll('#newsSearchInput, #sidebarSearchInput');
+            searchInputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchNews();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

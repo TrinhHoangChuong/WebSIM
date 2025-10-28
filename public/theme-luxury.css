@@ -1,0 +1,273 @@
+/* Luxury Gold & Black Theme */
+:root {
+    --primary-gold: #FFD700;
+    --secondary-gold: #F4C430;
+    --dark-gold: #B8860B;
+    --black: #000000;
+    --dark-gray: #1a1a1a;
+    --light-gray: #f8f9fa;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--light-gray);
+}
+
+/* Remove header-top */
+.header-top {
+    display: none;
+}
+
+.main-header {
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px 0;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--black);
+    text-shadow: 2px 2px 4px rgba(255, 215, 0, 0.3);
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-input {
+    border: 2px solid var(--primary-gold);
+    border-radius: 25px;
+    padding: 12px 50px 12px 20px;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.search-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-gold);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    color: var(--black);
+    font-weight: 600;
+}
+
+.search-btn:hover {
+    background: var(--dark-gold);
+    color: var(--white);
+}
+
+/* Navigation */
+.main-nav {
+    background: var(--black);
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-link {
+    color: var(--white) !important;
+    padding: 15px 20px !important;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    background: var(--primary-gold) !important;
+    color: var(--black) !important;
+}
+
+/* Stats Banner at bottom */
+.stats-banner {
+    background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+    color: var(--white);
+    padding: 60px 0;
+    margin-top: 80px;
+}
+
+.stat-item {
+    text-align: center;
+    position: relative;
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-gold);
+    text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.5);
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    color: var(--white);
+    opacity: 0.9;
+}
+
+/* SIM Cards */
+.sim-card {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.sim-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+    border-color: var(--primary-gold);
+}
+
+.sim-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.sim-price {
+    font-size: 1.5rem;
+    color: var(--primary-gold);
+    font-weight: 700;
+}
+
+.network-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 10px;
+}
+
+.network-mobifone { background: var(--primary-gold); }
+.network-viettel { background: #E31E24; color: var(--white); }
+.network-vinaphone { background: #0066CC; color: var(--white); }
+.network-vietnamobile { background: #FF6600; color: var(--white); }
+.network-itelecom { background: #8B4513; color: var(--white); }
+
+.btn-buy {
+    background: var(--black);
+    border: none;
+    color: var(--primary-gold);
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 700;
+    width: 100%;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-buy:hover {
+    background: var(--primary-gold);
+    color: var(--black);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Sidebar */
+.sidebar {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.sidebar h5 {
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--primary-gold);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 8px;
+}
+
+.sidebar a {
+    color: #666;
+    text-decoration: none;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.sidebar a:hover {
+    background: var(--primary-gold);
+    color: var(--black);
+}
+
+/* Footer */
+.footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 50px 0 20px;
+    margin-top: 50px;
+}
+
+.footer h5 {
+    color: var(--primary-gold);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.footer a {
+    color: #ccc;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.footer a:hover {
+    color: var(--primary-gold);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-gold) 0%, var(--dark-gold) 100%);
+    color: var(--black);
+    padding: 80px 0;
+    margin: 40px 0;
+}
+
+/* Buttons */
+.btn-success {
+    background: var(--black);
+    border: 2px solid var(--primary-gold);
+    color: var(--primary-gold);
+    font-weight: 600;
+}
+
+.btn-success:hover {
+    background: var(--primary-gold);
+    color: var(--black);
+}
+
+.btn-outline-success {
+    border: 2px solid var(--primary-gold);
+    color: var(--primary-gold);
+    background: transparent;
+}
+
+.btn-outline-success:hover {
+    background: var(--primary-gold);
+    color: var(--black);
+}
+
