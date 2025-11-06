@@ -1,5 +1,6 @@
 // Sim Thăng Long Clone JavaScript
-const API_BASE = 'api/';
+// const API_BASE = 'api/';
+const API_BASE = 'http://localhost:9999/WebSIM/api/';
 
 // Utility Functions
 function formatPhone(num) {
