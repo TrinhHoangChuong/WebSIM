@@ -1,0 +1,381 @@
+/* Luxury Gold & Black Theme - Complete Style Sheet */
+:root {
+    --luxury-gold: #FFD700;
+    --luxury-gold-light: #FFF8DC;
+    --luxury-gold-dark: #B8860B;
+    --luxury-black: #000000;
+    --luxury-gray: #1a1a1a;
+    --luxury-white: #ffffff;
+    --luxury-bg: #f8f9fa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--luxury-black);
+    color: var(--luxury-white);
+}
+
+/* Remove hotline bar */
+.header-top {
+    display: none !important;
+}
+
+/* Main Header */
+.main-header {
+    background: linear-gradient(to right, var(--luxury-black), var(--luxury-gray));
+    padding: 20px 0;
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+    border-bottom: 3px solid var(--luxury-gold);
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--luxury-gold);
+    letter-spacing: 1px;
+}
+
+.logo i {
+    color: var(--luxury-gold);
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.logo a {
+    color: var(--luxury-gold);
+    text-decoration: none;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-input {
+    background: var(--luxury-gray);
+    border: 2px solid var(--luxury-gold);
+    border-radius: 30px;
+    padding: 15px 60px 15px 25px;
+    width: 100%;
+    font-size: 1rem;
+    transition: all 0.3s;
+    color: var(--luxury-white);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--luxury-gold-dark);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.search-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--luxury-gold);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 25px;
+    color: var(--luxury-black);
+    font-weight: 700;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background: var(--luxury-gold-dark);
+    color: var(--luxury-white);
+    transform: translateY(-50%) scale(1.05);
+}
+
+/* Navigation */
+.main-nav {
+    background: var(--luxury-black);
+    padding: 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border-top: 3px solid var(--luxury-gold);
+    border-bottom: 3px solid var(--luxury-gold);
+}
+
+.nav-link {
+    color: var(--luxury-gold) !important;
+    padding: 18px 25px !important;
+    font-weight: 700;
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-link:hover {
+    background: var(--luxury-gold) !important;
+    color: var(--luxury-black) !important;
+    border-bottom-color: var(--luxury-gold-dark);
+}
+
+.nav-link.active {
+    background: var(--luxury-gold) !important;
+    color: var(--luxury-black) !important;
+    border-bottom-color: var(--luxury-gold-dark);
+}
+
+/* Buttons */
+.btn-success,
+.btn-outline-success {
+    background: var(--luxury-gold);
+    border: 2px solid var(--luxury-gold);
+    color: var(--luxury-black);
+    font-weight: 700;
+    padding: 10px 25px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.btn-success:hover,
+.btn-outline-success:hover {
+    background: var(--luxury-black);
+    border-color: var(--luxury-gold);
+    color: var(--luxury-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.btn-outline-success {
+    background: transparent;
+    color: var(--luxury-gold);
+}
+
+/* Stats Banner - Bottom of page */
+.stats-banner {
+    background: linear-gradient(135deg, var(--luxury-black), var(--luxury-gray));
+    color: var(--luxury-white);
+    padding: 80px 0;
+    margin-top: 100px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+    border-top: 5px solid var(--luxury-gold);
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.stat-item::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 60%;
+    background: linear-gradient(to bottom, transparent, var(--luxury-gold), transparent);
+}
+
+.stat-item:last-child::after {
+    display: none;
+}
+
+.stat-number {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--luxury-gold);
+    text-shadow: 3px 3px 10px rgba(255, 215, 0, 0.5);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.stat-label {
+    font-size: 1.2rem;
+    color: var(--luxury-white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* SIM Cards */
+.sim-card {
+    background: linear-gradient(135deg, var(--luxury-gray), var(--luxury-black));
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.sim-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--luxury-gold), var(--luxury-gold-dark));
+}
+
+.sim-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--luxury-gold);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+}
+
+.sim-number {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--luxury-gold);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.sim-price {
+    font-size: 1.8rem;
+    color: var(--luxury-gold-dark);
+    font-weight: 900;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.network-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--luxury-white);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.network-mobifone { background: #00A651; }
+.network-viettel { background: #E31E24; }
+.network-vinaphone { background: #0066CC; }
+.network-vietnamobile { background: #FF6600; }
+.network-itelecom { background: #8B4513; }
+
+.btn-buy {
+    background: var(--luxury-black);
+    border: 2px solid var(--luxury-gold);
+    color: var(--luxury-gold);
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-weight: 700;
+    width: 100%;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1rem;
+}
+
+.btn-buy:hover {
+    background: var(--luxury-gold);
+    color: var(--luxury-black);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+}
+
+/* Sidebar */
+.sidebar {
+    background: linear-gradient(135deg, var(--luxury-gray), var(--luxury-black));
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.1);
+    border: 1px solid var(--luxury-gold);
+}
+
+.sidebar h5 {
+    color: var(--luxury-gold);
+    font-weight: 900;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 4px solid var(--luxury-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    color: var(--luxury-white);
+    text-decoration: none;
+    padding: 12px 15px;
+    display: block;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.sidebar a:hover {
+    background: linear-gradient(135deg, var(--luxury-gold), var(--luxury-gold-dark));
+    color: var(--luxury-black);
+    transform: translateX(5px);
+    box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Footer */
+.footer {
+    background: var(--luxury-black);
+    color: var(--luxury-white);
+    padding: 60px 0 25px;
+    margin-top: 60px;
+}
+
+.footer h5 {
+    color: var(--luxury-gold);
+    margin-bottom: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer a {
+    color: #ccc;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.footer a:hover {
+    color: var(--luxury-gold);
+    transform: translateX(5px);
+}
+
+/* Utility Classes */
+.text-gold {
+    color: var(--luxury-gold);
+}
+
+.bg-gold {
+    background: var(--luxury-gold);
+}
+
+.bg-black {
+    background: var(--luxury-black);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .sim-number {
+        font-size: 1.5rem;
+    }
+}
+

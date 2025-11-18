@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm kiếm SIM - Sim Thăng Long</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        :root {
+            --primary-color: #00A651;
+            --secondary-color: #00803E;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        .main-header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            padding: 12px 50px 12px 20px;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 20px;
+            color: white;
+        }
+
+        .main-nav {
+            background: var(--primary-color);
+            padding: 0;
+        }
+
+        .nav-link {
+            color: white !important;
+            padding: 15px 20px !important;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .sim-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+            padding: 10px;
+        }
+
+        .sim-card {
+            position: relative;
+            background: linear-gradient(145deg, #ffffff, #f7fff9);
+            border: 2px solid transparent;
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.35s ease;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .sim-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(0, 166, 81, 0.25);
+        }
+
+        .sim-number {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .sim-price {
+            font-size: 1.2rem;
+            color: #d62828;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .sim-type {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .btn-buy {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-buy:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .network-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 25px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .network-viettel {
+            background: #e31e24;
+        }
+
+        .network-mobifone {
+            background: #007aff;
+        }
+
+        .network-vinaphone {
+            background: #0066cc;
+        }
+
+        .network-vietnamobile {
+            background: #ff6600;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar h5 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 8px 12px;
+            display: block;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .filter-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .results-header {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination {
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .page-link {
+            color: var(--primary-color);
+        }
+
+        .page-item.active .page-link {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="logo">
+                        <i class="fas fa-mobile-alt me-2"></i>
+                        <a href="index.html" style="color: inherit; text-decoration: none;">Sim Thăng Long</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Tìm sim theo số, đầu số, đuôi số..."
+                            id="searchInput" value="">
+                        <button class="search-btn" onclick="performSearch()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-3 text-end">
+                    <div class="d-flex align-items-center justify-content-end">
+                        <a href="tel:02466666666" class="btn btn-success me-2">
+                            <i class="fas fa-phone me-1"></i>024.6666.6666
+                        </a>
+                        <button class="btn btn-outline-success" onclick="window.open('https://zalo.me/0983656699', '_blank')">
+                            <i class="fab fa-zalo me-1"></i>Chat tư vấn
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg main-nav">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="simdep.html"><i class="fas fa-mobile-alt me-1"></i>SIM SỐ ĐẸP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="feng-shui.html"><i class="fas fa-yin-yang me-1"></i>SIM PHONG THỦY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pricing.html"><i class="fas fa-calculator me-1"></i>ĐỊNH GIÁ SIM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="payment.html"><i class="fas fa-credit-card me-1"></i>THANH TOÁN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html"><i class="fas fa-newspaper me-1"></i>TIN TỨC</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Left Sidebar Filters -->
+            <div class="col-lg-3">
+                <div class="filter-section">
+                    <h5><i class="fas fa-filter me-2"></i>Bộ lọc</h5>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Nhà mạng</label>
+                        <select class="form-select" id="filterNetwork" onchange="applyFilters()">
+                            <option value="">Tất cả</option>
+                            <option value="Viettel">Viettel</option>
+                            <option value="Vinaphone">Vinaphone</option>
+                            <option value="Mobifone">Mobifone</option>
+                            <option value="Vietnamobile">Vietnamobile</option>
+                            <option value="iTelecom">iTelecom</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Khoảng giá</label>
+                        <select class="form-select" id="filterPrice" onchange="applyFilters()">
+                            <option value="">Tất cả</option>
+                            <option value="0-500000">Dưới 500 nghìn</option>
+                            <option value="500000-1000000">500K - 1 triệu</option>
+                            <option value="1000000-3000000">1 - 3 triệu</option>
+                            <option value="3000000-5000000">3 - 5 triệu</option>
+                            <option value="5000000-10000000">5 - 10 triệu</option>
+                            <option value="10000000-50000000">10 - 50 triệu</option>
+                            <option value="50000000-100000000">50 - 100 triệu</option>
+                            <option value="100000000-200000000">100 - 200 triệu</option>
+                            <option value="200000000-500000000">200 - 500 triệu</option>
+                            <option value="500000000-999999999">Trên 500 triệu</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Loại SIM</label>
+                        <select class="form-select" id="filterType" onchange="applyFilters()">
+                            <option value="">Tất cả</option>
+                            <option value="Sim Tứ quý">Sim Tứ quý</option>
+                            <option value="Sim Ngũ quý">Sim Ngũ quý</option>
+                            <option value="Sim Lục quý">Sim Lục quý</option>
+                            <option value="Sim Tam hoa">Sim Tam hoa</option>
+                            <option value="Sim Tam hoa kép">Sim Tam hoa kép</option>
+                            <option value="Sim Năm sinh">Sim Năm sinh</option>
+                            <option value="Sim Lộc phát">Sim Lộc phát</option>
+                            <option value="Sim Thần Tài">Sim Thần Tài</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-outline-danger w-100" onclick="clearFilters()">
+                        <i class="fas fa-times me-1"></i>Xóa bộ lọc
+                    </button>
+                </div>
+
+                <div class="sidebar">
+                    <h5><i class="fas fa-tag me-2"></i>Sim theo giá</h5>
+                    <ul>
+                        <li><a href="#" onclick="filterByPrice(0, 500000); return false;">Sim dưới 500 nghìn</a></li>
+                        <li><a href="#" onclick="filterByPrice(500000, 1000000); return false;">Sim giá 500 - 1 triệu</a></li>
+                        <li><a href="#" onclick="filterByPrice(1000000, 3000000); return false;">Sim giá 1 - 3 triệu</a></li>
+                        <li><a href="#" onclick="filterByPrice(3000000, 5000000); return false;">Sim giá 3 - 5 triệu</a></li>
+                        <li><a href="#" onclick="filterByPrice(5000000, 10000000); return false;">Sim giá 5 - 10 triệu</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-lg-9">
+                <div class="results-header">
+                    <h4 id="resultsTitle">Kết quả tìm kiếm</h4>
+                    <p class="text-muted mb-0" id="resultsCount">Đang tải...</p>
+                </div>
+
+                <div id="loadingSpinner" class="text-center py-5" style="display: none;">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="visually-hidden">Đang tải...</span>
+                    </div>
+                </div>
+
+                <div id="simResults" class="sim-list">
+                    <!-- SIMs will be loaded here -->
+                </div>
+
+                <nav id="pagination" aria-label="Page navigation">
+                    <!-- Pagination will be loaded here -->
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Get API Base URL - tự động detect
+        function getApiBase() {
+            // Nếu đang chạy trên localhost:5500 (Live Server), dùng XAMPP port 9999
+            if (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
+                if (window.location.port === '5500' || window.location.port === '') {
+                    // Path đúng cho XAMPP port 9999
+                    return 'http://localhost:9999/WebSIM-main/WebSIM-main/api/';
+                }
+            }
+            // Nếu chạy cùng server (XAMPP), dùng relative path
+            return '../api/';
+        }
+        
+        const API_BASE = getApiBase();
+        let currentPage = 1;
+
+        // Format phone number
+        function formatPhone(num) {
+            if (!num) return '';
+            const d = num.replace(/\D/g, '');
+            if (d.length === 10) {
+                return d.slice(0, 3) + '.' + d.slice(3, 6) + '.' + d.slice(6, 10);
+            }
+            return num;
+        }
+
+        // Format price
+        function formatPrice(p) {
+            return new Intl.NumberFormat('vi-VN').format(p) + '₫';
+        }
+
+        // Get network class
+        function getNetworkClass(network) {
+            const networkLower = (network || '').toLowerCase();
+            if (networkLower.includes('viettel')) return 'network-viettel';
+            if (networkLower.includes('vinaphone')) return 'network-vinaphone';
+            if (networkLower.includes('mobifone')) return 'network-mobifone';
+            if (networkLower.includes('vietnamobile')) return 'network-vietnamobile';
+            if (networkLower.includes('itelecom')) return 'network-itelecom';
+            return 'network-mobifone';
+        }
+
+        // Load search results
+        async function loadSearchResults() {
+            const spinner = document.getElementById('loadingSpinner');
+            const results = document.getElementById('simResults');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            spinner.style.display = 'block';
+            results.innerHTML = '';
+
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const q = urlParams.get('q') || '';
+                const network = urlParams.get('network') || document.getElementById('filterNetwork')?.value || '';
+                const sim_type = urlParams.get('sim_type') || document.getElementById('filterType')?.value || '';
+                const min_price = urlParams.get('min_price') || '';
+                const max_price = urlParams.get('max_price') || '';
+                const page = urlParams.get('page') || currentPage;
+
+                // Build query string
+                const params = new URLSearchParams();
+                if (q) params.append('q', q);
+                if (network) params.append('network', network);
+                if (sim_type) params.append('sim_type', sim_type);
+                if (min_price) params.append('min_price', min_price);
+                if (max_price) params.append('max_price', max_price);
+                params.append('page', page);
+                params.append('limit', '20');
+
+                const response = await fetch(`${API_BASE}search.php?${params}`);
+                const data = await response.json();
+
+                if (data.success && data.data.length > 0) {
+                    results.innerHTML = data.data.map(sim => {
+                        const phoneNumber = sim.so_dien_thoai || sim.phone_number || '';
+                        const network = sim.nha_mang || sim.network || '';
+                        const price = sim.gia || sim.price || 0;
+                        const simType = sim.loai_sim || sim.sim_type || 'SIM thường';
+                        const simId = sim.id || '';
+                        
+                        return `
+                            <div class="sim-card">
+                                <div class="network-badge ${getNetworkClass(network)}">${network}</div>
+                                <div class="sim-number">${formatPhone(phoneNumber)}</div>
+                                <div class="sim-price">${formatPrice(price)}</div>
+                                <div class="sim-type">${simType}</div>
+                                <button class="btn-buy" onclick="buySim(${simId}, '${phoneNumber}', ${price})">
+                                    <i class="fas fa-shopping-cart me-1"></i> Mua ngay
+                                </button>
+                            </div>
+                        `;
+                    }).join('');
+
+                    // Update results count
+                    resultsCount.textContent = `Tìm thấy ${data.pagination.total} SIM`;
+                    
+                    // Render pagination
+                    renderPagination(data.pagination);
+                } else {
+                    results.innerHTML = '<div class="col-12 text-center py-5"><h5>Không tìm thấy SIM nào</h5><p class="text-muted">Vui lòng thử lại với từ khóa khác</p></div>';
+                    resultsCount.textContent = 'Không tìm thấy SIM nào';
+                }
+            } catch (error) {
+                console.error('Error loading search results:', error);
+                results.innerHTML = '<div class="col-12 text-center py-5"><h5>Lỗi tải dữ liệu</h5><p class="text-muted">Vui lòng thử lại sau</p></div>';
+                resultsCount.textContent = 'Lỗi tải dữ liệu';
+            } finally {
+                spinner.style.display = 'none';
+            }
+        }
+
+        // Render pagination
+        function renderPagination(pagination) {
+            const container = document.getElementById('pagination');
+            if (!pagination || pagination.total_pages <= 1) {
+                container.innerHTML = '';
+                return;
+            }
+
+            let html = '<ul class="pagination">';
+            
+            // Previous button
+            if (pagination.current_page > 1) {
+                html += `<li class="page-item"><a class="page-link" href="#" onclick="goToPage(${pagination.current_page - 1}); return false;">Trước</a></li>`;
+            }
+            
+            // Page numbers
+            const startPage = Math.max(1, pagination.current_page - 2);
+            const endPage = Math.min(pagination.total_pages, pagination.current_page + 2);
+            
+            if (startPage > 1) {
+                html += `<li class="page-item"><a class="page-link" href="#" onclick="goToPage(1); return false;">1</a></li>`;
+                if (startPage > 2) {
+                    html += '<li class="page-item disabled"><span class="page-link">...</span></li>';
+                }
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                if (i === pagination.current_page) {
+                    html += `<li class="page-item active"><span class="page-link">${i}</span></li>`;
+                } else {
+                    html += `<li class="page-item"><a class="page-link" href="#" onclick="goToPage(${i}); return false;">${i}</a></li>`;
+                }
+            }
+            
+            if (endPage < pagination.total_pages) {
+                if (endPage < pagination.total_pages - 1) {
+                    html += '<li class="page-item disabled"><span class="page-link">...</span></li>';
+                }
+                html += `<li class="page-item"><a class="page-link" href="#" onclick="goToPage(${pagination.total_pages}); return false;">${pagination.total_pages}</a></li>`;
+            }
+            
+            // Next button
+            if (pagination.current_page < pagination.total_pages) {
+                html += `<li class="page-item"><a class="page-link" href="#" onclick="goToPage(${pagination.current_page + 1}); return false;">Sau</a></li>`;
+            }
+            
+            html += '</ul>';
+            container.innerHTML = html;
+        }
+
+        // Go to page
+        function goToPage(page) {
+            currentPage = page;
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.set('page', page);
+            window.history.pushState({}, '', '?' + urlParams.toString());
+            loadSearchResults();
+        }
+
+        // Perform search
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            const urlParams = new URLSearchParams();
+            if (searchTerm) {
+                urlParams.set('q', searchTerm);
+            }
+            urlParams.set('page', '1');
+            window.location.href = 'search.html?' + urlParams.toString();
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const network = document.getElementById('filterNetwork').value;
+            const price = document.getElementById('filterPrice').value;
+            const type = document.getElementById('filterType').value;
+
+            if (network) urlParams.set('network', network);
+            else urlParams.delete('network');
+
+            if (price) {
+                const [min, max] = price.split('-');
+                urlParams.set('min_price', min);
+                urlParams.set('max_price', max);
+            } else {
+                urlParams.delete('min_price');
+                urlParams.delete('max_price');
+            }
+
+            if (type) urlParams.set('sim_type', type);
+            else urlParams.delete('sim_type');
+
+            urlParams.set('page', '1');
+            window.location.href = 'search.html?' + urlParams.toString();
+        }
+
+        // Filter by price
+        function filterByPrice(min, max) {
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.set('min_price', min);
+            urlParams.set('max_price', max);
+            urlParams.set('page', '1');
+            window.location.href = 'search.html?' + urlParams.toString();
+        }
+
+        // Clear filters
+        function clearFilters() {
+            document.getElementById('filterNetwork').value = '';
+            document.getElementById('filterPrice').value = '';
+            document.getElementById('filterType').value = '';
+            const urlParams = new URLSearchParams();
+            const q = new URLSearchParams(window.location.search).get('q');
+            if (q) urlParams.set('q', q);
+            urlParams.set('page', '1');
+            window.location.href = 'search.html?' + urlParams.toString();
+        }
+
+        // Buy SIM
+        function buySim(simId, phoneNumber, price) {
+            if (!simId) {
+                alert('Không thể xác định SIM. Vui lòng thử lại.');
+                return;
+            }
+            window.location.href = `order.html?sim_id=${simId}&phone=${encodeURIComponent(phoneNumber)}&price=${price}`;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get search query from URL and set in input
+            const urlParams = new URLSearchParams(window.location.search);
+            const q = urlParams.get('q');
+            if (q) {
+                document.getElementById('searchInput').value = q;
+            }
+
+            // Set filter values from URL
+            const network = urlParams.get('network');
+            const min_price = urlParams.get('min_price');
+            const max_price = urlParams.get('max_price');
+            const sim_type = urlParams.get('sim_type');
+
+            if (network) document.getElementById('filterNetwork').value = network;
+            if (min_price && max_price) {
+                document.getElementById('filterPrice').value = `${min_price}-${max_price}`;
+            }
+            if (sim_type) document.getElementById('filterType').value = sim_type;
+
+            // Load search results
+            loadSearchResults();
+
+            // Handle Enter key in search
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+

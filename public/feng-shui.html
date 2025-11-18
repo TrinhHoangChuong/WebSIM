@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIM Phong Thủy - Sim Thăng Long</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #00A651;
+            --secondary-green: #00803E;
+            --gold: #FFD700;
+            --orange: #FF6B35;
+            --dark: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 166, 81, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(0, 166, 81, 0.05) 0%, transparent 50%);
+            z-index: 0;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-20px, -20px) scale(1.1); }
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-top {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            border: 2px solid var(--primary-green);
+            border-radius: 25px;
+            padding: 12px 50px 12px 20px;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 15px rgba(0, 166, 81, 0.3);
+            border-color: var(--secondary-green);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-green);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 20px;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .search-btn:hover {
+            background: var(--secondary-green);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .main-nav {
+            background: var(--primary-green);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            color: white !important;
+            padding: 15px 20px !important;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: white;
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: 80%;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        /* Hero Section với Animation */
+        .feng-shui-hero {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 50%, #2E7D32 100%);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feng-shui-hero::before {
+            content: '☯';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            animation: rotateSymbol 30s linear infinite;
+        }
+
+        @keyframes rotateSymbol {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .feng-shui-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .feng-shui-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form Card với Glass Effect */
+        .feng-shui-form-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feng-shui-form-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 166, 81, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .feng-shui-form-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 166, 81, 0.2);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .form-select,
+        .form-control {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 12px 15px;
+            transition: all 0.3s;
+        }
+
+        .form-select:focus,
+        .form-control:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 15px rgba(0, 166, 81, 0.2);
+        }
+
+        .btn-find {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 166, 81, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-find::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-find:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-find:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 166, 81, 0.4);
+        }
+
+        /* Element Cards với Hover Effects */
+        .element-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .element-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .element-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .element-card:hover::before {
+            left: 100%;
+        }
+
+        .element-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-green);
+        }
+
+        .element-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 3rem;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .element-card:hover .element-icon-wrapper {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .element-icon-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(45deg, var(--primary-green), var(--gold), var(--primary-green));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .element-card:hover .element-icon-wrapper::after {
+            opacity: 1;
+            animation: rotateBorder 2s linear infinite;
+        }
+
+        @keyframes rotateBorder {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .element-moc {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+        }
+
+        .element-hoa {
+            background: linear-gradient(135deg, #FF5722, #D32F2F);
+        }
+
+        .element-tho {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+
+        .element-kim {
+            background: linear-gradient(135deg, #607D8B, #455A64);
+        }
+
+        .element-thuy {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+
+        .element-card h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-top: 15px;
+            transition: color 0.3s;
+        }
+
+        .element-card:hover h4 {
+            color: var(--primary-green);
+        }
+
+        /* Lucky Numbers Display */
+        .lucky-numbers-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(0, 166, 81, 0.1) 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            border: 2px solid rgba(0, 166, 81, 0.2);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .number-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            margin: 8px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 166, 81, 0.3);
+            transition: all 0.3s;
+            animation: bounceIn 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .number-badge:nth-child(1) { animation-delay: 0.1s; }
+        .number-badge:nth-child(2) { animation-delay: 0.2s; }
+        .number-badge:nth-child(3) { animation-delay: 0.3s; }
+        .number-badge:nth-child(4) { animation-delay: 0.4s; }
+        .number-badge:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(-50px);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1) translateY(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .number-badge:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 166, 81, 0.4);
+        }
+
+        /* SIM Cards Grid */
+        .sims-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .sim-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sim-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-green), var(--gold), var(--primary-green));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .sim-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .sim-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 15px 40px rgba(0, 166, 81, 0.3);
+            border-color: var(--primary-green);
+        }
+
+        .network-badge {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .network-viettel { background: #E31E24; }
+        .network-mobifone { background: var(--primary-green); }
+        .network-vinaphone { background: #0066CC; }
+        .network-vietnamobile { background: #FF6600; }
+
+        .sim-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin: 15px 0;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 5px rgba(0, 166, 81, 0.2);
+        }
+
+        .sim-price {
+            font-size: 1.5rem;
+            color: var(--orange);
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .btn-buy {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 15px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-buy::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            transition: right 0.3s;
+        }
+
+        .btn-buy:hover::after {
+            right: 15px;
+        }
+
+        .btn-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 166, 81, 0.4);
+        }
+
+        /* Guide Section */
+        .guide-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .guide-section h3 {
+            color: var(--primary-green);
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+
+        .guide-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .guide-section li {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-green);
+            transition: all 0.3s;
+        }
+
+        .guide-section li:hover {
+            background: rgba(0, 166, 81, 0.1);
+            transform: translateX(10px);
+        }
+
+        .guide-section li::before {
+            content: '✓';
+            color: var(--primary-green);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 60px 0 40px;
+            margin-top: 80px;
+        }
+
+        .footer h5 {
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--primary-green);
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 166, 81, 0.1);
+            border-top-color: var(--primary-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .feng-shui-hero h1 {
+                font-size: 2rem;
+            }
+            .element-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <i class="fas fa-phone me-2"></i>
+                    Hotline: 024.6666.6666 |
+                    <i class="fas fa-envelope ms-3 me-2"></i>
+                    Email: info@simthanglong.vn
+                </div>
+                <div class="col-md-6 text-end">
+                    <i class="fas fa-truck me-2"></i>
+                    Miễn phí giao hàng toàn quốc
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="logo">
+                        <a href="index.html" style="color: inherit; text-decoration: none;">
+                            <i class="fas fa-mobile-alt me-2"></i>
+                            Sim Thăng Long
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Tìm sim theo số, đầu số, đuôi số..."
+                            id="searchInput">
+                        <button class="search-btn" onclick="searchSims()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-3 text-end">
+                    <div class="d-flex align-items-center justify-content-end">
+                        <a href="tel:02466666666" class="btn btn-success me-2">
+                            <i class="fas fa-phone me-1"></i>024.6666.6666
+                        </a>
+                        <button class="btn btn-outline-success" onclick="window.open('https://zalo.me/0983656699', '_blank')">
+                            <i class="fab fa-zalo me-1"></i>Chat tư vấn
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg main-nav">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="simdep.html"><i class="fas fa-mobile-alt me-1"></i>SIM SỐ ĐẸP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="feng-shui.html"><i class="fas fa-yin-yang me-1"></i>SIM PHONG THỦY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pricing.html"><i class="fas fa-calculator me-1"></i>ĐỊNH GIÁ SIM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="payment.html"><i class="fas fa-credit-card me-1"></i>THANH TOÁN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html"><i class="fas fa-newspaper me-1"></i>TIN TỨC</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- Hero Section -->
+        <div class="feng-shui-hero">
+        <div class="container text-center">
+            <h1><i class="fas fa-yin-yang me-3"></i>SIM PHONG THỦY</h1>
+            <p>Chọn SIM hợp mệnh để mang lại may mắn, tài lộc và thành công trong cuộc sống</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+            <!-- Form Section -->
+        <div class="row mb-5">
+            <div class="col-12">
+                    <div class="feng-shui-form-card">
+                        <h2 class="text-center mb-4">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            Nhập thông tin để tìm SIM phù hợp
+                        </h2>
+                    <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">
+                                    <i class="fas fa-birthday-cake me-2"></i>Năm sinh
+                                </label>
+                            <select class="form-select" id="birthYear">
+                                <option value="">Chọn năm sinh</option>
+                            </select>
+                        </div>
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">
+                                    <i class="fas fa-star me-2"></i>Mệnh (tự động tính từ năm sinh)
+                                </label>
+                                <select class="form-select" id="selectedElement" onchange="updateElementDisplay()">
+                                <option value="">Tự động tính</option>
+                                    <option value="Mộc">Mộc</option>
+                                    <option value="Hỏa">Hỏa</option>
+                                    <option value="Thổ">Thổ</option>
+                                    <option value="Kim">Kim</option>
+                                    <option value="Thủy">Thủy</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                            <button class="btn btn-find" onclick="findSimByBirthday()">
+                            <i class="fas fa-search me-2"></i>Tìm SIM hợp mệnh
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Element Selection Cards -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="text-center mb-4" style="color: #333; font-weight: 700;">
+                        <i class="fas fa-magic me-2" style="color: var(--primary-green);"></i>
+                        Chọn mệnh của bạn
+                    </h2>
+                    <div class="element-grid" id="elementSelection">
+                        <!-- Elements will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+        <!-- Lucky Numbers Info -->
+        <div class="row mb-5" id="luckyNumbersInfo" style="display: none;">
+            <div class="col-12">
+                    <div class="lucky-numbers-card text-center">
+                        <h3 id="selectedElementName" style="color: var(--primary-green); font-weight: 700; margin-bottom: 20px;"></h3>
+                        <p id="selectedElementDesc" style="font-size: 1.1rem; color: #666; margin-bottom: 25px;"></p>
+                        <div>
+                            <h5 style="color: #333; margin-bottom: 20px; font-weight: 600;">
+                                <i class="fas fa-star me-2" style="color: var(--gold);"></i>
+                                Số may mắn của bạn
+                            </h5>
+                        <div id="luckyNumbersList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended SIMs -->
+        <div class="row mb-5" id="recommendedSims" style="display: none;">
+            <div class="col-12">
+                    <h3 class="mb-4" style="color: #333; font-weight: 700;">
+                        <i class="fas fa-gift me-2" style="color: var(--primary-green);"></i>
+                        SIM được gợi ý cho bạn
+                    </h3>
+                    <div class="sims-grid" id="simsList">
+                    <!-- SIMs will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+            <!-- Guide Section -->
+        <div class="row mb-5">
+            <div class="col-12">
+                    <div class="guide-section">
+                    <h3><i class="fas fa-book me-2"></i>Hướng dẫn chọn SIM phong thủy</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <h5 style="color: var(--primary-green); margin-bottom: 20px;">Nguyên tắc cơ bản:</h5>
+                            <ul>
+                                <li>Chọn số hợp với mệnh của bạn</li>
+                                <li>Tránh các số xung khắc</li>
+                                <li>Ưu tiên số có ý nghĩa tích cực</li>
+                                <li>Kết hợp với năm sinh</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                                <h5 style="color: var(--primary-green); margin-bottom: 20px;">Lưu ý quan trọng:</h5>
+                            <ul>
+                                <li>Phong thủy chỉ mang tính tham khảo</li>
+                                <li>Quan trọng nhất là bạn cảm thấy thoải mái</li>
+                                <li>Nên kết hợp với các yếu tố khác</li>
+                                <li>Tham khảo ý kiến chuyên gia nếu cần</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-mobile-alt me-2"></i>Sim Thăng Long</h5>
+                    <p class="mb-3">Hệ thống phân phối Sim số đẹp lớn nhất Việt Nam. Cam kết giá tốt nhất, hỗ trợ 24/7.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="fab fa-facebook fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-zalo fs-4"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Liên hệ</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-phone me-2"></i>Hotline: 024.6666.6666</li>
+                        <li><i class="fas fa-envelope me-2"></i>Email: info@simthanglong.vn</li>
+                        <li><i class="fas fa-clock me-2"></i>Giờ làm việc: 8:00 - 22:00</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i>263 Xã Đàn, Đống Đa, Hà Nội</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Hỗ trợ</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fas fa-question-circle me-2"></i>Câu hỏi thường gặp</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt me-2"></i>Chính sách bảo mật</a></li>
+                        <li><a href="#"><i class="fas fa-undo me-2"></i>Chính sách đổi trả</a></li>
+                        <li><a href="#"><i class="fas fa-truck me-2"></i>Miễn phí giao hàng</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr style="border-color: #444;">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0 text-muted">
+                        © Sim Thăng Long - Hệ thống phân phối Sim số đẹp lớn nhất Việt Nam!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Get API Base URL
+        function getApiBase() {
+            if (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
+                if (window.location.port === '5500' || window.location.port === '') {
+                    return 'http://localhost:9999/WebSIM-main/WebSIM-main/api/';
+                }
+            }
+            const currentPath = window.location.pathname;
+            if (currentPath.includes('WebSIM-main')) {
+                return 'http://localhost:9999/WebSIM-main/WebSIM-main/api/';
+            }
+            return '../api/';
+        }
+
+        const API_BASE = getApiBase();
+
+        const fengShuiElements = [
+            {
+                name: 'Mộc',
+                icon: '🌳',
+                class: 'element-moc',
+                description: 'Người mệnh Mộc hợp với sim tam hoa 0, 1, 3',
+                luckyNumbers: ['0', '1', '3']
+            },
+            {
+                name: 'Hỏa',
+                icon: '🔥',
+                class: 'element-hoa',
+                description: 'Người mệnh Hỏa hợp với tam hoa 3, 4, 9',
+                luckyNumbers: ['3', '4', '9']
+            },
+            {
+                name: 'Thổ',
+                icon: '🏔️',
+                class: 'element-tho',
+                description: 'Người mệnh Thổ hợp tam hoa 2, 5, 8, 9',
+                luckyNumbers: ['2', '5', '8', '9']
+            },
+            {
+                name: 'Kim',
+                icon: '⚡',
+                class: 'element-kim',
+                description: 'Người mệnh Kim hợp tam hoa 2, 5, 6, 7, 8',
+                luckyNumbers: ['2', '5', '6', '7', '8']
+            },
+            {
+                name: 'Thủy',
+                icon: '🌊',
+                class: 'element-thuy',
+                description: 'Người mệnh Thủy hợp với tam hoa 0, 1, 6, 7',
+                luckyNumbers: ['0', '1', '6', '7']
+            }
+        ];
+
+        function formatPhone(num) {
+            if (!num) return '';
+            const d = num.replace(/\D/g, '');
+            return d.length === 10 ? d.slice(0, 3) + '.' + d.slice(3, 6) + '.' + d.slice(6, 10) : num;
+        }
+
+        function formatPrice(p) {
+            return new Intl.NumberFormat('vi-VN').format(p) + '₫';
+        }
+
+        function getNetworkClass(network) {
+            const networkLower = (network || '').toLowerCase();
+            if (networkLower.includes('viettel')) return 'network-viettel';
+            if (networkLower.includes('vinaphone')) return 'network-vinaphone';
+            if (networkLower.includes('mobifone')) return 'network-mobifone';
+            if (networkLower.includes('vietnamobile')) return 'network-vietnamobile';
+            return 'network-mobifone';
+        }
+
+        function renderElements() {
+            const container = document.getElementById('elementSelection');
+            container.innerHTML = fengShuiElements.map((element, index) => `
+                <div class="element-card" onclick="selectElement('${element.name}')" style="animation: fadeInUp 0.6s ease-out ${index * 0.1}s both;">
+                    <div class="element-icon-wrapper ${element.class}">
+                        <span style="font-size: 3rem;">${element.icon}</span>
+                        </div>
+                    <h4>${element.name}</h4>
+                </div>
+            `).join('');
+        }
+
+        function selectElement(elementName) {
+            const element = fengShuiElements.find(e => e.name === elementName);
+            if (!element) return;
+
+            // Update form select
+            document.getElementById('selectedElement').value = elementName;
+
+            // Show lucky numbers info
+            showLuckyNumbers(element);
+
+            // Load recommended SIMs
+            loadRecommendedSims(element.luckyNumbers);
+
+            // Scroll to results
+            setTimeout(() => {
+                document.getElementById('luckyNumbersInfo').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        }
+
+        function showLuckyNumbers(element) {
+            document.getElementById('selectedElementName').textContent = `Mệnh ${element.name}`;
+            document.getElementById('selectedElementDesc').textContent = element.description;
+
+            const luckyNumbersList = document.getElementById('luckyNumbersList');
+            luckyNumbersList.innerHTML = element.luckyNumbers.map(num =>
+                `<span class="number-badge">${num}</span>`
+            ).join('');
+
+            document.getElementById('luckyNumbersInfo').style.display = 'block';
+        }
+
+        function updateElementDisplay() {
+            const elementName = document.getElementById('selectedElement').value;
+            if (elementName) {
+                const element = fengShuiElements.find(e => e.name === elementName);
+                if (element) {
+                    showLuckyNumbers(element);
+            loadRecommendedSims(element.luckyNumbers);
+                }
+            }
+        }
+
+        async function loadRecommendedSims(luckyNumbers) {
+            const container = document.getElementById('simsList');
+            container.innerHTML = '<div class="col-12 text-center py-5"><div class="loading-spinner"></div><p class="mt-3">Đang tìm SIM phù hợp...</p></div>';
+
+            try {
+                const response = await fetch(`${API_BASE}search.php?limit=50`);
+                const result = await response.json();
+
+                if (result.success && result.data && result.data.length > 0) {
+                    // Filter SIMs that contain lucky numbers
+                    const filteredSims = result.data.filter(sim => {
+                        const phoneNumber = (sim.so_dien_thoai || sim.phone_number || '').replace(/\D/g, '');
+                        return luckyNumbers.some(num => phoneNumber.includes(num));
+                    });
+
+                    if (filteredSims.length > 0) {
+                        renderSims(filteredSims.slice(0, 12));
+                    } else {
+                        // If no exact match, show all SIMs
+                        renderSims(result.data.slice(0, 12));
+                    }
+                    document.getElementById('recommendedSims').style.display = 'block';
+                } else {
+                    container.innerHTML = '<div class="col-12 text-center py-5"><h5>Không tìm thấy SIM phù hợp</h5></div>';
+                }
+            } catch (error) {
+                console.error('Error loading SIMs:', error);
+                container.innerHTML = '<div class="col-12 text-center py-5"><h5 class="text-danger">Lỗi tải dữ liệu</h5></div>';
+            }
+        }
+
+        function renderSims(sims) {
+            const container = document.getElementById('simsList');
+            if (sims.length === 0) {
+                container.innerHTML = '<div class="col-12 text-center py-5"><h5>Không tìm thấy SIM phù hợp</h5></div>';
+                return;
+            }
+
+            container.innerHTML = sims.map((sim, index) => {
+                const phoneNumber = sim.so_dien_thoai || sim.phone_number || '';
+                const network = sim.nha_mang || sim.network || '';
+                const price = sim.gia || sim.price || 0;
+                const simType = sim.loai_sim || sim.sim_type || 'SIM thường';
+                const simId = sim.id || '';
+
+                return `
+                    <div class="sim-card" style="animation: fadeInUp 0.5s ease-out ${index * 0.1}s both;">
+                        <div class="network-badge ${getNetworkClass(network)}">${network}</div>
+                        <div class="sim-number">${formatPhone(phoneNumber)}</div>
+                        <div class="sim-price">${formatPrice(price)}</div>
+                        <div class="text-muted mb-3">${simType}</div>
+                        <button class="btn-buy" onclick="buySim(${simId}, '${phoneNumber}', ${price})">
+                            <i class="fas fa-shopping-cart me-1"></i>Mua ngay
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function buySim(simId, phoneNumber, price) {
+            if (!simId) {
+                alert('Không thể xác định SIM. Vui lòng thử lại.');
+                return;
+            }
+            window.location.href = `order.html?sim_id=${simId}&phone=${encodeURIComponent(phoneNumber)}&price=${price}`;
+        }
+
+        function searchSims() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            if (!searchTerm) {
+                alert('Vui lòng nhập từ khóa tìm kiếm!');
+                return;
+            }
+            window.location.href = `search.html?q=${encodeURIComponent(searchTerm)}`;
+        }
+
+        function calculateElementFromYear(year) {
+            const elementMap = {
+                'Mộc': [1993, 1994, 2003, 2004, 2013, 2014, 2023, 2024],
+                'Hỏa': [1985, 1986, 1995, 1996, 2005, 2006, 2015, 2016, 2025, 2026],
+                'Thổ': [1987, 1988, 1997, 1998, 2007, 2008, 2017, 2018, 2027, 2028],
+                'Kim': [1989, 1990, 1999, 2000, 2009, 2010, 2019, 2020],
+                'Thủy': [1991, 1992, 2001, 2002, 2011, 2012, 2021, 2022]
+            };
+
+            for (const [element, years] of Object.entries(elementMap)) {
+                if (years.includes(parseInt(year))) {
+                    return element;
+                }
+            }
+            return null;
+        }
+
+        function calculateElement() {
+            const year = document.getElementById('birthYear').value;
+            const elementSelect = document.getElementById('selectedElement');
+
+            if (year && !elementSelect.value) {
+                const element = calculateElementFromYear(year);
+                if (element) {
+                    elementSelect.value = element;
+                    updateElementDisplay();
+                }
+            }
+        }
+
+        async function findSimByBirthday() {
+            const year = document.getElementById('birthYear').value;
+            const elementSelect = document.getElementById('selectedElement');
+            const element = elementSelect.value;
+
+            if (!year && !element) {
+                alert('Vui lòng chọn năm sinh hoặc mệnh!');
+                return;
+            }
+
+            let finalElement = element;
+            if (year && !finalElement) {
+                finalElement = calculateElementFromYear(year);
+                if (finalElement) {
+                    elementSelect.value = finalElement;
+                }
+            }
+
+            if (!finalElement) {
+                alert('Không thể tính mệnh từ năm sinh. Vui lòng chọn mệnh!');
+                return;
+            }
+
+            // Find element data
+            const elementData = fengShuiElements.find(e => e.name === finalElement);
+            if (!elementData) return;
+
+            // Show lucky numbers info
+            showLuckyNumbers(elementData);
+
+            // Load recommended SIMs
+            await loadRecommendedSims(elementData.luckyNumbers);
+
+            // Scroll to results
+            setTimeout(() => {
+                document.getElementById('recommendedSims').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 500);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function () {
+            renderElements();
+
+            // Populate birth year dropdown
+            const birthYearSelect = document.getElementById('birthYear');
+            const currentYear = new Date().getFullYear();
+            for (let year = currentYear; year >= 1950; year--) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                birthYearSelect.appendChild(option);
+            }
+
+            // Auto calculate element when year changes
+            birthYearSelect.addEventListener('change', calculateElement);
+
+            // Handle Enter key in search
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchSims();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
