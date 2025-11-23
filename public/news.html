@@ -41,7 +41,7 @@
         }
 
         .main-nav {
-            background: var(--dark);
+            background: var(--primary-green);
             padding: 0;
         }
 
@@ -234,7 +234,7 @@
 
         .search-box {
             position: relative;
-            margin-bottom: 20px;
+            /* margin-bottom: 20px;  */
         }
 
         .search-input {
@@ -381,13 +381,16 @@
                         </button>
                     </div>
                 </div>
-                <div class="col-md-3 text-end">
-                    <button class="btn btn-outline-success me-2" onclick="showLoginModal()">
-                        <i class="fas fa-sign-in-alt me-1"></i>Đăng nhập
-                    </button>
-                    <button class="btn btn-success" onclick="showRegisterModal()">
-                        <i class="fas fa-user-plus me-1"></i>Đăng ký
-                    </button>
+                <div class="col-md-3 text-end" >
+                    <div class="d-flex align-items-center justify-content-end">
+                        <a href="tel:02466666666" class="btn btn-success me-2">
+                            <i class="fas fa-phone me-1"></i>024.6666.6666
+                        </a>
+                        <button class="btn btn-outline-success"
+                            onclick="window.open('https://zalo.me/0983656699', '_blank')">
+                            <i class="fab fa-zalo me-1"></i>Chat tư vấn
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -464,7 +467,7 @@
                 <!-- Search -->
                 <div class="sidebar">
                     <h5><i class="fas fa-search me-2"></i>Tìm kiếm</h5>
-                    <div class="search-box">
+                    <div class="search-box" >
                         <input type="text" class="form-control" placeholder="Tìm kiếm tin tức..."
                             id="sidebarSearchInput">
                         <button class="btn btn-success" onclick="searchNews()">
@@ -564,7 +567,7 @@
                 title: '6+ điểm giao dịch Mobifone tại Đà Nẵng đầy đủ, chi tiết',
                 excerpt: 'Tổng hợp đầy đủ các điểm giao dịch Mobifone tại Đà Nẵng với địa chỉ, giờ làm việc và dịch vụ chi tiết.',
                 content: 'Nội dung chi tiết bài viết...',
-                image: 'https://via.placeholder.com/400x200/00A651/FFFFFF?text=Mobifone+Da+Nang',
+                image: '../assets/image/cua-hang-diem-giao-dich-mobifone-da-nang.png',
                 category: 'guide',
                 date: '2024-01-15',
                 featured: true
@@ -574,7 +577,7 @@
                 title: '5 cách kiểm tra điện thoại có hỗ trợ 5G không siêu nhanh',
                 excerpt: 'Hướng dẫn chi tiết 5 cách đơn giản để kiểm tra điện thoại có hỗ trợ mạng 5G hay không.',
                 content: 'Nội dung chi tiết bài viết...',
-                image: 'https://via.placeholder.com/400x200/0066CC/FFFFFF?text=5G+Check',
+                image: '../assets/image/5cach.jpg',
                 category: 'technology',
                 date: '2024-01-14',
                 featured: false
@@ -584,7 +587,7 @@
                 title: '30+ gói cước Mobifone trả trước Rẻ, nhiều Ưu đãi',
                 excerpt: 'Tổng hợp 30+ gói cước Mobifone trả trước với giá rẻ và nhiều ưu đãi hấp dẫn.',
                 content: 'Nội dung chi tiết bài viết...',
-                image: 'https://via.placeholder.com/400x200/00A651/FFFFFF?text=Mobifone+Packages',
+                image: '../assets/image/30+.jpg',
                 category: 'promotion',
                 date: '2024-01-13',
                 featured: false
@@ -594,7 +597,7 @@
                 title: 'Hướng dẫn đăng ký gói cước 4G MobiFone 1 ngày - Giá rẻ, tiện lợi',
                 excerpt: 'Hướng dẫn chi tiết cách đăng ký gói cước 4G MobiFone 1 ngày với giá rẻ và tiện lợi.',
                 content: 'Nội dung chi tiết bài viết...',
-                image: 'https://via.placeholder.com/400x200/00A651/FFFFFF?text=4G+1+Day',
+                image: '../assets/image/huongdan.jpg',
                 category: 'guide',
                 date: '2024-01-12',
                 featured: false
@@ -604,7 +607,7 @@
                 title: 'Đăng ký gói gọi nội mạng MobiFone, chỉ 5K gọi thả ga cả ngày',
                 excerpt: 'Hướng dẫn đăng ký gói gọi nội mạng MobiFone với giá chỉ 5K có thể gọi thả ga cả ngày.',
                 content: 'Nội dung chi tiết bài viết...',
-                image: 'https://via.placeholder.com/400x200/00A651/FFFFFF?text=Call+Package',
+                image: '../assets/image/noimang.jpg',
                 category: 'promotion',
                 date: '2024-01-11',
                 featured: false
@@ -614,7 +617,7 @@
                 title: 'Cách chọn SIM số đẹp hợp phong thủy theo mệnh',
                 excerpt: 'Hướng dẫn chi tiết cách chọn SIM số đẹp hợp phong thủy theo từng mệnh để mang lại may mắn.',
                 content: 'Nội dung chi tiết bài viết...',
-                image: 'https://via.placeholder.com/400x200/FF6B35/FFFFFF?text=Feng+Shui',
+                image: '../assets/image/simsomenh.jpg',
                 category: 'feng-shui',
                 date: '2024-01-10',
                 featured: false
@@ -658,6 +661,7 @@
                         <h3 class="news-title">
                             <a href="news-detail.html?id=${news.id}" style="color: inherit; text-decoration: none;">
                                 ${news.title}
+                                <img src="" alt="">
                             </a>
                         </h3>
                         <p class="news-excerpt">${news.excerpt}</p>

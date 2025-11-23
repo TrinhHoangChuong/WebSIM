@@ -13,12 +13,24 @@
             --secondary-color: #00803E;
             --text-color: #333;
             --light-bg: #f8f9fa;
+            --primary-green: #00A651;
+            --secondary-green: #00803E;
+            --gold: #FFD700;
+            --orange: #FF6B35;
+            --dark: #1a1a1a;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: var(--light-bg);
             color: var(--text-color);
+        }
+
+        .header-top {
+            background: var(--primary-green);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
         }
 
         .main-header {
@@ -233,6 +245,7 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -242,6 +255,7 @@
             from {
                 transform: scale(0.8);
             }
+
             to {
                 transform: scale(1);
             }
@@ -263,9 +277,11 @@
             0% {
                 transform: scale(0);
             }
+
             50% {
                 transform: scale(1.1);
             }
+
             100% {
                 transform: scale(1);
             }
@@ -595,6 +611,22 @@
 </head>
 
 <body>
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <i class="fas fa-phone me-2"></i>
+                    Hotline: 024.6666.6666 |
+                    <i class="fas fa-envelope ms-3 me-2"></i>
+                    Email: info@simthanglong.vn
+                </div>
+                <div class="col-md-6 text-end">
+                    <i class="fas fa-truck me-2"></i>
+                    Miễn phí giao hàng toàn quốc
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Main Header -->
     <div class="main-header">
         <div class="container">
@@ -602,8 +634,8 @@
                 <div class="col-md-3">
                     <div class="logo">
                         <a href="index.html" style="color: inherit; text-decoration: none;">
-                        <i class="fas fa-mobile-alt me-2"></i>
-                        Sim Thăng Long
+                            <i class="fas fa-sim-card me-2"></i>
+                            Sim Thăng Long
                         </a>
                     </div>
                 </div>
@@ -621,9 +653,10 @@
                         <a href="tel:02466666666" class="btn btn-success me-2">
                             <i class="fas fa-phone me-1"></i>024.6666.6666
                         </a>
-                        <button class="btn btn-outline-success" onclick="window.open('https://zalo.me/0983656699', '_blank')">
+                        <button class="btn btn-outline-success"
+                            onclick="window.open('https://zalo.me/0983656699', '_blank')">
                             <i class="fab fa-zalo me-1"></i>Chat tư vấn
-                    </button>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -913,7 +946,7 @@
             try {
                 console.log('Loading SIMs from:', apiUrl);
                 const res = await fetch(apiUrl);
-                
+
                 // Check if response is actually JSON
                 const contentType = res.headers.get('content-type');
                 if (!contentType || !contentType.includes('application/json')) {
@@ -921,11 +954,11 @@
                     console.error('API returned non-JSON response:', text.substring(0, 200));
                     throw new Error('API không trả về JSON. Có thể PHP server chưa chạy hoặc path không đúng.');
                 }
-                
+
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
                 }
-                
+
                 const data = await res.json();
                 const container = document.getElementById(elementId);
 
@@ -938,16 +971,16 @@
                 if (data.error) {
                     throw new Error(data.message || 'API returned error');
                 }
-                
+
                 // Nếu data là array rỗng hoặc không có data
                 if (!data || (Array.isArray(data) && data.length === 0)) {
                     container.innerHTML = '<div class="col-12 text-center py-5"><h5>Không có SIM nào</h5></div>';
                     return;
                 }
-                
+
                 // Đảm bảo data là array
                 const simsArray = Array.isArray(data) ? data : (data.data || []);
-                
+
                 if (simsArray.length === 0) {
                     container.innerHTML = '<div class="col-12 text-center py-5"><h5>Không có SIM nào</h5></div>';
                     return;
@@ -959,7 +992,7 @@
                     const price = sim.gia || sim.price || 0;
                     const simType = sim.loai_sim || sim.sim_type || 'SIM thường';
                     const simId = sim.id || '';
-                    
+
                     return `
       <div class="sim-card ${isFeatured ? 'featured' : ''}">
         ${!isFeatured ? `<div class="promo-badge">-${sim.khuyen_mai || '15'}%</div>` : ''}
@@ -1005,20 +1038,20 @@
                 alert('Vui lòng nhập từ khóa tìm kiếm!');
                 return;
             }
-            
+
             // Redirect to search page or filter current page
             window.location.href = `search.html?q=${encodeURIComponent(searchTerm)}`;
         }
 
         // Get API Base URL - tự động detect và test
         let cachedApiBase = null;
-        
+
         async function getApiBase() {
             // Nếu đã cache, dùng luôn
             if (cachedApiBase) {
                 return cachedApiBase;
             }
-            
+
             // Nếu đang chạy trên localhost:5500 (Live Server), dùng PHP server riêng
             if (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
                 if (window.location.port === '5500' || window.location.port === '') {
@@ -1029,7 +1062,7 @@
                         'http://localhost:9999/WebSIM-main/api/',
                         'http://localhost/WebSIM-main/api/'
                     ];
-                    
+
                     // Test path nào hoạt động
                     for (const path of testPaths) {
                         try {
@@ -1047,7 +1080,7 @@
                             // Continue to next path
                         }
                     }
-                    
+
                     // Nếu không tìm thấy, dùng path mặc định (port 9999)
                     console.warn('⚠️ Could not auto-detect API path, using default port 9999');
                     cachedApiBase = 'http://localhost:9999/WebSIM-main/WebSIM-main/api/';
@@ -1068,10 +1101,10 @@
         }
 
         // Handle Enter key in search
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const searchInput = document.getElementById('searchInput');
             if (searchInput) {
-                searchInput.addEventListener('keypress', function(e) {
+                searchInput.addEventListener('keypress', function (e) {
                     if (e.key === 'Enter') {
                         searchSims();
                     }
@@ -1082,18 +1115,18 @@
             const urlParams = new URLSearchParams(window.location.search);
             const paymentSuccess = urlParams.get('payment');
             const phoneNumber = urlParams.get('phone');
-            
+
             if (paymentSuccess === 'success' && phoneNumber) {
                 // Hiển thị modal thông báo thành công
                 showSuccessModal(phoneNumber);
-                
+
                 // Xóa parameter khỏi URL để tránh hiển thị lại khi refresh
                 const newUrl = window.location.pathname;
                 window.history.replaceState({}, document.title, newUrl);
             }
 
             // Load SIMs on page load - đợi API base được detect
-            (async function() {
+            (async function () {
                 const apiBase = await getApiBase();
                 console.log('API Base URL:', apiBase);
                 loadSim(apiBase + 'get_sim_khuyenmai.php', 'sim-khuyenmai', false);
@@ -1105,13 +1138,13 @@
         function showSuccessModal(phoneNumber) {
             const modal = document.getElementById('successModal');
             const phoneElement = document.getElementById('successPhoneNumber');
-            
+
             if (modal && phoneElement) {
                 phoneElement.textContent = phoneNumber;
                 modal.style.display = 'flex';
-                
+
                 // Close modal when clicking outside
-                modal.addEventListener('click', function(e) {
+                modal.addEventListener('click', function (e) {
                     if (e.target === modal) {
                         closeSuccessModal();
                     }
